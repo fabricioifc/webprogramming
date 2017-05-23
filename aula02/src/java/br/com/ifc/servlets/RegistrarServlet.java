@@ -26,7 +26,7 @@ public class RegistrarServlet extends HttpServlet {
 
     public RegistrarServlet() {
         super();
-        service = new UsuarioServiceImpl();
+        // instanciar UsuarioServiceImpl
     }
 
     @Override
@@ -56,7 +56,7 @@ public class RegistrarServlet extends HttpServlet {
             Usuarios usuario = new Usuarios();
 	    // setar os parâmetros do usuário
 
-            
+
 	    // Chamar o método salvar
 
             RequestDispatcher view = request.getRequestDispatcher(/*redirecionar para a página de login*/);

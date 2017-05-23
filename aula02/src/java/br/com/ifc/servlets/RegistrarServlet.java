@@ -56,9 +56,7 @@ public class RegistrarServlet extends HttpServlet {
             Usuarios usuario = new Usuarios();
 	    // setar os parâmetros do usuário
 
-            if (/*Verificar se o usuário já existe*/) {
-                throw new Exception("Usuário " + usuario.getUsuario() + " já existe!");
-            }
+            
 	    // Chamar o método salvar
 
             RequestDispatcher view = request.getRequestDispatcher(/*redirecionar para a página de login*/);

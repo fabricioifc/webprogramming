@@ -20,13 +20,13 @@ import javax.servlet.http.HttpServletResponse;
 public class RegistrarServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private static String REGISTRAR = "/registrar.jsp";
-    private static String EFETUAR_LOGIN = "/login.jsp";
-    private /*Interface Service do Usuário*/ service;
+    private static final String REGISTRAR = "/registrar.jsp";
+    private static final String EFETUAR_LOGIN = "/login.jsp";
+    private UsuarioService service;
 
     public RegistrarServlet() {
         super();
-        // instanciar UsuarioServiceImpl
+        service = new UsuarioServiceImpl();
     }
 
     @Override
@@ -36,11 +36,11 @@ public class RegistrarServlet extends HttpServlet {
             String action = request.getParameter("acao");
 
             if (action.equalsIgnoreCase("registrar")) {
-                forward = /*página REGISTRAR*/;
+                forward = REGISTRAR;
             } else if (action.equalsIgnoreCase("login")) {
-                forward = /*página EFETUAR_LOGIN*/;
+                forward = EFETUAR_LOGIN;
             } else {
-                forward = /*página REGISTRAR*/;
+                forward = REGISTRAR;
             }
 
             RequestDispatcher view = request.getRequestDispatcher(forward);
@@ -54,12 +54,17 @@ public class RegistrarServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Usuarios usuario = new Usuarios();
-	    // setar os parâmetros do usuário
+            usuario.setNome(request.getParameter("nome"));
+            usuario.setEmail(request.getParameter("email"));
+            usuario.setUsuario(request.getParameter("usuario"));
+            //Criptografar a senha para gravar no banco de dados
+            usuario.setSenha(request.getParameter("senha"));
+            if (service.getByUsuario(usuario.getUsuario()) != null) {
+                throw new Exception("Usuário " + usuario.getUsuario() + " já existe!");
+            }
+            service.salvar(usuario);
 
-
-	    // Chamar o método salvar
-
-            RequestDispatcher view = request.getRequestDispatcher(/*redirecionar para a página de login*/);
+            RequestDispatcher view = request.getRequestDispatcher(EFETUAR_LOGIN);
             request.getSession().setAttribute("mensagens", "Usuário registrado com sucesso!");
             view.forward(request, response);
         } catch (Exception ex) {

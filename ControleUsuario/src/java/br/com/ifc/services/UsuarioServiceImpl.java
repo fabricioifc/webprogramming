@@ -21,21 +21,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public List<Usuarios> listar() throws Exception {
-        String sql = "select * from usuarios order by id";
-        ResultSet rs = null;
-        List<Usuarios> lista = new ArrayList<>();
-        PreparedStatement ps = null;
-        try {
-            ps = Conexao.getConnection().prepareStatement(sql);
-            rs = ps.executeQuery(sql);
-            while (rs.next()) {
-                Usuarios u = new Usuarios(rs.getInt("id"), rs.getString("nome"), rs.getString("email"), rs.getString("usuario"), rs.getString("senha"));
-                lista.add(u);
-            }
-            return lista;
-        } finally {
-//            Conexao.closeConnection(rs, ps);
-        }
+        //Implementar
+        return null;
     }
 
     @Override

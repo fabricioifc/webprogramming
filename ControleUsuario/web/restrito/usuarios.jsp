@@ -6,36 +6,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Usuários</title>
-        <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css"/>
+        <!--Adicionar a biblioteca bootstrap-->
     </head>
     <body>
-        <div class="container">
-            <div class="row">
-                <h1>Lista de Usuários</h1>
-                <table border="1">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nome</th>
-                            <th>E-mail</th>
-                            <th>Usuário</th>
-                            <th>Senha</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach var="u" items="${usuarios}">
-                            <tr>
-                                <td>${u.id}</td>
-                                <td>${u.nome}</td>
-                                <td>${u.email}</td>
-                                <td>${u.usuario}</td>
-                                <td>${u.senha}</td>
-                            </tr>
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        implementar esta tela
     </body>
 </html>

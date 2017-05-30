@@ -21,8 +21,27 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public List<Usuarios> listar() throws Exception {
-        //Implementar
-        return null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        ps = Conexao.getConnection().prepareStatement(
+                "select * from usuarios"
+        );
+        rs = ps.executeQuery();
+
+        List<Usuarios> usuarios = new ArrayList<>();
+        while (rs.next()) {
+            Usuarios usuario = new Usuarios();
+            usuario.setEmail(rs.getString("email"));
+            usuario.setId(rs.getInt("id"));
+            usuario.setNome(rs.getString("nome"));
+            usuario.setSenha(rs.getString("senha"));
+            usuario.setUsuario(rs.getString("usuario"));
+            //Adiciona na lista
+            usuarios.add(usuario);
+        }
+        return usuarios;
+
     }
 
     @Override
@@ -41,7 +60,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 //            Conexao.closeConnection(rs, ps);
         }
     }
-
 
     @Override
     public Usuarios getByUsuario(String usuario) throws Exception {

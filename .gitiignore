@@ -1,0 +1,16 @@
+# NetBeans specific #
+ControleUsuario/nbproject/private/
+ControleUsuario/build/
+ControleUsuario/nbbuild/
+ControleUsuario/dist/
+ControleUsuario/nbdist/
+ControleUsuario/nbactions.xml
+ControleUsuario/nb-configuration.xml
+
+# Class Files #
+ControleUsuario/*.class
+
+# Package Files #
+ControleUsuario/*.jar
+ControleUsuario/*.war
+ControleUsuario/*.ear

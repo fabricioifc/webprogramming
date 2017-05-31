@@ -21,13 +21,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public List<Usuarios> listar() throws Exception {
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-
-        ps = Conexao.getConnection().prepareStatement(
-                "select * from usuarios"
-        );
-        rs = ps.executeQuery();
+        PreparedStatement ps
+                = Conexao.getConnection().prepareStatement(
+                        "select * from usuarios"
+                );
+        ResultSet rs = ps.executeQuery();
 
         List<Usuarios> usuarios = new ArrayList<>();
         while (rs.next()) {
@@ -37,11 +35,9 @@ public class UsuarioServiceImpl implements UsuarioService {
             usuario.setNome(rs.getString("nome"));
             usuario.setSenha(rs.getString("senha"));
             usuario.setUsuario(rs.getString("usuario"));
-            //Adiciona na lista
-            usuarios.add(usuario);
+            usuarios.add(usuario);//Adiciona na lista
         }
         return usuarios;
-
     }
 
     @Override

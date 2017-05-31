@@ -20,5 +20,6 @@
         </h3>
         <hr />
         <a href="Usuarios?acao=listar">Lista de Usuários</a>
+        <a href="Filmes?acao=listar">Lista de Filmes</a>
     </body>
 </html>

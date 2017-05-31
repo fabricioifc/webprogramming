@@ -9,7 +9,7 @@ CREATE TABLE usuarios (
   usuario varchar(45) NOT NULL,
   senha varchar(255) NOT NULL,
   PRIMARY KEY (id)
-)
+);
 
 CREATE TABLE filmes (
     id INTEGER NOT NULL AUTO_INCREMENT,
@@ -23,3 +23,4 @@ insert into filmes (nome, genero, imagem) values ('Rei Arthur – A Lenda da Esp
 insert into filmes (nome, genero, imagem) values ('Mulher-Maravilha', 'Qudrinhos', 'http://br.web.img2.acsta.net/videothumbnails/17/01/03/13/26/084343.jpg');
 insert into filmes (nome, genero, imagem) values ('Logan', 'Quadrinhos', 'http://s2.glbimg.com/gPIvxBGroxjtNnMovwnb5j3A0co=/620x0/top/s.glbimg.com/jo/eg/f/original/2016/10/20/logan3.jpg');
 insert into filmes (nome, genero, imagem) values ('Guardiões da Galáxia 2', 'Quadrinhos', 'http://rollingstone.uol.com.br/media/images/original/2014/07/27/img-1024882-guardioes-da-galaxia.jpg');
+insert into filmes (nome, genero, imagem) values ('Star Wars Rogue One', 'Ficção', 'http://blogs-images.forbes.com/erikkain/files/2016/11/rogue-one-rectangle.jpg');

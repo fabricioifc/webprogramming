@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.ifc.entidades;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  *
@@ -75,7 +69,6 @@ public class Usuarios implements Serializable {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-
 
     @Override
     public String toString() {

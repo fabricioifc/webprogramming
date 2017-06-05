@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 public class FilmeServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private static String INSERIR_OU_EDITAR = "/restrito/filme.jsp";
+    private static String INSERIR_OU_EDITAR = "/restrito/filme.jsp"; //criar o arquivo jsp
     private static String LISTA_FILMES = "/restrito/filmes.jsp";
     private FilmeService service;
 
@@ -56,15 +56,9 @@ public class FilmeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             request.setCharacterEncoding("utf-8");
-            Filmes filme = new Filmes();
-            filme.setNome(request.getParameter("nome"));
-            filme.setImagem(request.getParameter("imagem"));
-            filme.setGenero(request.getParameter("genero"));
 
-            System.out.println(filme.toString());
-
-            service.salvar(filme);
-
+            //Setar os parâmetros no objeto Filme
+            //Salvar o filme utilizando a classe service FilmeService
             response.sendRedirect("Filmes?acao=listar");
 
         } catch (Exception ex) {

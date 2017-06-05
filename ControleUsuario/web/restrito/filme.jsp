@@ -29,23 +29,7 @@
                                 <input type="text" name="nome" value="" class="form-control" />
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="genero" class="control-label col-md-3">Gênero: </label>
-                            <div class="col-md-9">
-                                <input type="text" name="genero" value="" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="imagem" class="control-label col-md-3">Imagem: </label>
-                            <div class="col-md-9">
-                                <input type="text" name="imagem" value="" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-offset-3 col-md-9">
-                                <input type="submit" value="Salvar" class="btn btn-primary" />
-                            </div>
-                        </div>
+                        <!--Criar os outros inputs para gênero e imagem. Criar o botão para submeter o formulário-->
                     </form>
                 </div>
             </div>

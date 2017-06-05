@@ -15,5 +15,5 @@ import java.util.List;
 public interface FilmeService {
 
     public List<Filmes> listar() throws Exception;
-    public boolean salvar(Filmes usuario) throws Exception;
+    public boolean salvar(Filmes filme) throws Exception;
 }

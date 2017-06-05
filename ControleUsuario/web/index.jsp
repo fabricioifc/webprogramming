@@ -19,7 +19,7 @@
             <a href="Registrar?acao=login">aqui</a> para entrar.
         </h3>
         <hr />
-        <a href="Usuarios?acao=listar">Lista de Usuários</a>
-        <a href="Filmes?acao=listar">Lista de Filmes</a>
+        <a href="Usuarios?acao=listar">Lista de Usuários</a> <br />
+        <a href="Filmes?acao=listar">Lista de Filmes</a> <br />
     </body>
 </html>

@@ -58,4 +58,9 @@ public class Filmes {
         this.imagem = imagem;
     }
 
+    @Override
+    public String toString() {
+        return "Filmes{" + "id=" + id + ", nome=" + nome + ", genero=" + genero + ", imagem=" + imagem + '}';
+    }
+
 }

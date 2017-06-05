@@ -14,15 +14,23 @@
     </head>
     <body>
         <div class="container">
+            <% if (request.getAttribute("mensagens") != null) { %>
+            <p class="alert alert-danger">${mensagens}</p>
+            <% }%>
             <div class="panel panel-info">
-                <div class="panel-heading">
-                    <h3>Lista de Filmes</h3>
+                <div class="panel-heading clearfix">
+                    <h3>
+                        Lista de Filmes
+                        <a href="Filmes?acao=inserir" class="pull-right">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </a>
+                    </h3>
                 </div>
                 <div class="panel-body">
                     <c:forEach items="${filmes}" var="u">
                         <div class="col-md-4">
                             <div class="thumbnail">
-                                <img src="${u.imagem}" alt="${u.nome}" class="img-rounded">
+                                <img src="${u.imagem}" alt="${u.nome}" class="img-rounded" style="max-height: 250px; width: auto;">
                                 <div class="caption">
                                     <h4>${u.nome}</h4>
                                     <p>${u.genero}</p>

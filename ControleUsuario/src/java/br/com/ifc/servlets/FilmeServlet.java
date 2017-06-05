@@ -5,6 +5,7 @@
  */
 package br.com.ifc.servlets;
 
+import br.com.ifc.entidades.Filmes;
 import br.com.ifc.services.FilmeService;
 import br.com.ifc.services.FilmeServiceImpl;
 import java.io.IOException;
@@ -19,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 public class FilmeServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-//    private static String INSERIR_OU_EDITAR = "/restrito/usuario.jsp";
-    private static String LISTAR_USUARIOS = "/restrito/filmes.jsp";
+    private static String INSERIR_OU_EDITAR = "/restrito/filme.jsp";
+    private static String LISTA_FILMES = "/restrito/filmes.jsp";
     private FilmeService service;
 
     public FilmeServlet() {
@@ -31,16 +32,46 @@ public class FilmeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            String forward = LISTAR_USUARIOS;
-
-            request.setAttribute("filmes", service.listar());
+            String forward = null;
+            String acao = request.getParameter("acao");
+            if (acao.equalsIgnoreCase("listar")) {
+                request.setAttribute("filmes", service.listar());
+                forward = LISTA_FILMES;
+            } else if (acao.equalsIgnoreCase("inserir")) {
+                forward = INSERIR_OU_EDITAR;
+            } else {
+                forward = INSERIR_OU_EDITAR;
+            }
 
             RequestDispatcher view = request.getRequestDispatcher(forward);
             view.forward(request, response);
         } catch (Exception ex) {
             ex.printStackTrace();
-            request.getSession().setAttribute("mensagens", ex.getMessage());
-            response.sendRedirect(request.getHeader("Referer"));
+            request.setAttribute("mensagens", ex.getMessage());
+            request.getRequestDispatcher(INSERIR_OU_EDITAR).forward(request, response);
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            request.setCharacterEncoding("utf-8");
+            Filmes filme = new Filmes();
+            filme.setNome(request.getParameter("nome"));
+            filme.setImagem(request.getParameter("imagem"));
+            filme.setGenero(request.getParameter("genero"));
+
+            System.out.println(filme.toString());
+
+            service.salvar(filme);
+
+            response.sendRedirect("Filmes?acao=listar");
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+//            response.sendRedirect(request.getHeader("Referer"));
+            request.setAttribute("mensagens", ex.getMessage());
+            request.getRequestDispatcher(INSERIR_OU_EDITAR).forward(request, response);
         }
     }
 

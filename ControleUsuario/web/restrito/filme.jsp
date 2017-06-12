@@ -27,19 +27,19 @@
                         <div class="form-group">
                             <label for="nome" class="control-label col-md-3">Nome: </label>
                             <div class="col-md-9">
-                                <input type="text" name="nome" value="" class="form-control" />
+                                <input type="text" name="nome" value="" class="form-control" required="true" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="genero" class="control-label col-md-3">Gênero: </label>
                             <div class="col-md-9">
-                                <input type="text" name="genero" value="" class="form-control" />
+                                <input type="text" name="genero" value="" class="form-control" required="true" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="imagem" class="control-label col-md-3">Imagem: </label>
                             <div class="col-md-9">
-                                <input type="text" name="imagem" value="" class="form-control" />
+                                <input type="text" name="imagem" value="" class="form-control" required="true" />
                             </div>
                         </div>
                         <div class="form-group">

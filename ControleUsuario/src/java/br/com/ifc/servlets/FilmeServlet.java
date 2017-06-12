@@ -34,10 +34,13 @@ public class FilmeServlet extends HttpServlet {
         try {
             String forward = null;
             String acao = request.getParameter("acao");
+
             if (acao.equalsIgnoreCase("listar")) {
                 request.setAttribute("filmes", service.listar());
                 forward = LISTA_FILMES;
-            } else if (acao.equalsIgnoreCase("inserir")) {
+            } else if (acao.equalsIgnoreCase("editar")) {
+                Integer id = Integer.parseInt(request.getParameter("id"));
+                request.setAttribute("filme", service.getById(id));
                 forward = INSERIR_OU_EDITAR;
             } else {
                 forward = INSERIR_OU_EDITAR;
@@ -56,14 +59,24 @@ public class FilmeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             request.setCharacterEncoding("utf-8");
+
             Filmes filme = new Filmes();
+            if (!request.getParameter("id").equals("")) {
+                filme.setId(Integer.parseInt(request.getParameter("id")));
+            }
             filme.setNome(request.getParameter("nome"));
             filme.setImagem(request.getParameter("imagem"));
             filme.setGenero(request.getParameter("genero"));
 
             System.out.println(filme.toString());
 
-            service.salvar(filme);
+            //Se o ID existir significa que o filme será atualizado, 
+            //caso contrário será criado um novo filme
+            if (filme.getId() == null) {
+                service.salvar(filme);
+            } else {
+                service.atualizar(filme);
+            }
 
             response.sendRedirect("Filmes?acao=listar");
 

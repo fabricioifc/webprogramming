@@ -31,7 +31,7 @@
                     <c:forEach items="${filmes}" var="u">
                         <div class="col-md-4">
                             <div class="thumbnail">
-                                <img src="${u.imagem}" alt="${u.nome}" class="img-rounded" style="max-height: 250px; width: auto;">
+                                <img src="${u.imagem}" alt="${u.nome}" class="img-rounded" style="max-height: 300px; width: auto;">
                                 <div class="caption">
                                     <h4>${u.nome}</h4>
                                     <p>${u.genero}</p>

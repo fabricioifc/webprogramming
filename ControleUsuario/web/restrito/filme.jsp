@@ -45,6 +45,7 @@
                         <div class="form-group">
                             <div class="col-md-offset-3 col-md-9">
                                 <input type="submit" value="Salvar" class="btn btn-primary" />
+                                <input type="button" value="Voltar" class="btn" onclick="history.back()" />
                             </div>
                         </div>
                     </form>

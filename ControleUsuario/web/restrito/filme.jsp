@@ -26,7 +26,7 @@
                         <div class="form-group">
                             <label for="nome" class="control-label col-md-3">Nome: </label>
                             <div class="col-md-9">
-                                <input type="text" name="nome" value="" class="form-control" />
+                                <input type="text" name="nome" value="" class="form-control" required="true" />
                             </div>
                         </div>
                         <!--Criar os outros inputs para gênero e imagem. Criar o botão para submeter o formulário-->

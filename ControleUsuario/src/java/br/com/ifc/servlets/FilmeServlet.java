@@ -40,7 +40,8 @@ public class FilmeServlet extends HttpServlet {
                 forward = LISTA_FILMES;
             } else if (acao.equalsIgnoreCase("editar")) {
                 Integer id = Integer.parseInt(request.getParameter("id"));
-                request.setAttribute("filme", service.getById(id));
+//                utilizar o método setAtribute do objeto request.
+//                Nele você precisa atribuir o retorno do método getById(id) da classe service
                 forward = INSERIR_OU_EDITAR;
             } else {
                 forward = INSERIR_OU_EDITAR;
@@ -62,20 +63,18 @@ public class FilmeServlet extends HttpServlet {
 
             Filmes filme = new Filmes();
             if (!request.getParameter("id").equals("")) {
-                filme.setId(Integer.parseInt(request.getParameter("id")));
+//                setar o id do filme utilizando setId e getParameter
             }
             filme.setNome(request.getParameter("nome"));
             filme.setImagem(request.getParameter("imagem"));
             filme.setGenero(request.getParameter("genero"));
 
-            System.out.println(filme.toString());
-
             //Se o ID existir significa que o filme será atualizado, 
             //caso contrário será criado um novo filme
             if (filme.getId() == null) {
-                service.salvar(filme);
+                //chamar o método salvar
             } else {
-                service.atualizar(filme);
+                //chamar o método atualizar
             }
 
             response.sendRedirect("Filmes?acao=listar");

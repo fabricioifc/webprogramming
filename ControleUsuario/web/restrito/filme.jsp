@@ -34,13 +34,13 @@
                         <div class="form-group">
                             <label for="genero" class="control-label col-md-3">Gênero: </label>
                             <div class="col-md-9">
-                                <input type="text" name="genero" value="${filme.genero}" class="form-control" required="true" />
+                                <input type="text" name="genero" value="<!-- igual ao input do nome -->" class="form-control" required="true" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="imagem" class="control-label col-md-3">Imagem: </label>
                             <div class="col-md-9">
-                                <input type="text" name="imagem" value="${filme.imagem}" class="form-control" required="true" />
+                                <input type="text" name="imagem" value="<!-- igual ao input do nome -->" class="form-control" required="true" />
                             </div>
                         </div>
                         <div class="form-group">

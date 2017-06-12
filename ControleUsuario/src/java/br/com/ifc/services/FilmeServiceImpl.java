@@ -66,10 +66,10 @@ public class FilmeServiceImpl implements FilmeService {
 
         if (rs.next()) {
             Filmes filme = new Filmes();
-            filme.setGenero(rs.getString("genero"));
             filme.setId(rs.getInt("id"));
             filme.setNome(rs.getString("nome"));
-            filme.setImagem(rs.getString("imagem"));
+//            filme.setGenero...
+//            filme.setImagem...
             return filme;
         }
         return null;
@@ -83,9 +83,9 @@ public class FilmeServiceImpl implements FilmeService {
             int i = 1;
             ps = Conexao.getConnection().prepareStatement(sql);
             ps.setString(i++, usuario.getNome());
-            ps.setString(i++, usuario.getGenero());
-            ps.setString(i++, usuario.getImagem());
-            
+//            filme.setGenero...
+//            filme.setImagem...
+
             ps.setInt(i++, usuario.getId()); //id do filme que será atualizado
             return ps.executeUpdate() == 1;
         } finally {

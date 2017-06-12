@@ -34,15 +34,19 @@ public class FilmeServlet extends HttpServlet {
         try {
             String forward = null;
             String acao = request.getParameter("acao");
+
+//            se o parâmetro ação for listar
             if (acao.equalsIgnoreCase("listar")) {
                 request.setAttribute("filmes", service.listar());
                 forward = LISTA_FILMES;
+//            se o parâmetro ação for inserir
             } else if (acao.equalsIgnoreCase("inserir")) {
                 forward = INSERIR_OU_EDITAR;
             } else {
                 forward = INSERIR_OU_EDITAR;
             }
 
+//            Redireciona para a tela filme.jsp ou filmes.jsp
             RequestDispatcher view = request.getRequestDispatcher(forward);
             view.forward(request, response);
         } catch (Exception ex) {
@@ -57,10 +61,10 @@ public class FilmeServlet extends HttpServlet {
         try {
             request.setCharacterEncoding("utf-8");
 
-            //Setar os parâmetros no objeto Filme
+            //Criar e setar os parâmetros no objeto Filme (utilize getParameter)
             //Salvar o filme utilizando a classe service FilmeService
+            
             response.sendRedirect("Filmes?acao=listar");
-
         } catch (Exception ex) {
             ex.printStackTrace();
 //            response.sendRedirect(request.getHeader("Referer"));

@@ -40,15 +40,15 @@ public class FilmeServiceImpl implements FilmeService {
     }
 
     @Override
-    public boolean salvar(Filmes usuario) throws Exception {
-        String sql = "insert into filmes (nome, genero, imagem) values (?,?,?)";
+    public boolean salvar(Filmes filme) throws Exception {
+        String sql = "insert into filmes (colunas) values (valores)";
         PreparedStatement ps = null;
         try {
             int i = 1;
             ps = Conexao.getConnection().prepareStatement(sql);
-            ps.setString(i++, usuario.getNome());
-            ps.setString(i++, usuario.getGenero());
-            ps.setString(i++, usuario.getImagem());
+            ps.setString(i++, filme.getNome());
+            ps.setString(i++, filme.getGenero());
+            //setString para o campo imagem do filme
             return ps.executeUpdate() == 1;
         } finally {
 //            Conexao.closeConnection(rs, ps);

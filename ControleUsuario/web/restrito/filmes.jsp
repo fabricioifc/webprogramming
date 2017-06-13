@@ -30,7 +30,7 @@
                 <div class="panel-body">
                     <c:forEach items="${filmes}" var="u">
                         <div class="col-md-4">
-                            <div class="thumbnail">
+                            <div class="thumbnail" style="min-height: 300px;">
                                 <a href="Filmes?acao=editar&id=${u.id}">
                                     <img src="${u.imagem}" alt="${u.nome}" class="img-rounded" style="max-height: 300px; width: auto;">
                                 </a>

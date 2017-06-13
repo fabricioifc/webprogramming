@@ -37,6 +37,7 @@ public class FilmeServiceImpl implements FilmeService {
             usuarios.add(filme);//Adiciona na lista
         }
         return usuarios;
+        
     }
 
     @Override

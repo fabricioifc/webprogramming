@@ -56,4 +56,42 @@ public class FilmeServiceImpl implements FilmeService {
         }
     }
 
+    @Override
+    public Filmes getById(Integer id) throws Exception {
+        PreparedStatement ps
+                = Conexao.getConnection().prepareStatement(
+                        "select * from filmes where id = ?"
+                );
+        ps.setInt(1, id);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            Filmes filme = new Filmes();
+            filme.setId(rs.getInt("id"));
+            filme.setNome(rs.getString("nome"));
+//            filme.setGenero...
+//            filme.setImagem...
+            return filme;
+        }
+        return null;
+    }
+
+    @Override
+    public boolean atualizar(Filmes usuario) throws Exception {
+        String sql = "update filmes set nome = ?, genero = ?, imagem = ? where id = ?";
+        PreparedStatement ps = null;
+        try {
+            int i = 1;
+            ps = Conexao.getConnection().prepareStatement(sql);
+            ps.setString(i++, usuario.getNome());
+//            filme.setGenero...
+//            filme.setImagem...
+
+            ps.setInt(i++, usuario.getId()); //id do filme que será atualizado
+            return ps.executeUpdate() == 1;
+        } finally {
+//            Conexao.closeConnection(rs, ps);
+        }
+    }
+
 }

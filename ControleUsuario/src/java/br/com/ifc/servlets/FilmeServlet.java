@@ -35,12 +35,13 @@ public class FilmeServlet extends HttpServlet {
             String forward = null;
             String acao = request.getParameter("acao");
 
-//            se o parâmetro ação for listar
             if (acao.equalsIgnoreCase("listar")) {
                 request.setAttribute("filmes", service.listar());
                 forward = LISTA_FILMES;
-//            se o parâmetro ação for inserir
-            } else if (acao.equalsIgnoreCase("inserir")) {
+            } else if (acao.equalsIgnoreCase("editar")) {
+                Integer id = Integer.parseInt(request.getParameter("id"));
+//                utilizar o método setAtribute do objeto request.
+//                Nele você precisa atribuir o retorno do método getById(id) da classe service
                 forward = INSERIR_OU_EDITAR;
             } else {
                 forward = INSERIR_OU_EDITAR;
@@ -60,6 +61,22 @@ public class FilmeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             request.setCharacterEncoding("utf-8");
+
+            Filmes filme = new Filmes();
+            if (!request.getParameter("id").equals("")) {
+//                setar o id do filme utilizando setId e getParameter
+            }
+            filme.setNome(request.getParameter("nome"));
+            filme.setImagem(request.getParameter("imagem"));
+            filme.setGenero(request.getParameter("genero"));
+
+            //Se o ID existir significa que o filme será atualizado, 
+            //caso contrário será criado um novo filme
+            if (filme.getId() == null) {
+                //chamar o método salvar
+            } else {
+                //chamar o método atualizar
+            }
 
             //Criar e setar os parâmetros no objeto Filme (utilize getParameter)
             //Salvar o filme utilizando a classe service FilmeService

@@ -7,10 +7,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO_8859-1">
-        <title>Usuários</title>
+        <title>Filmes</title>
 
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
         <div class="container">
@@ -23,10 +24,29 @@
                 </div>
                 <div class="panel-body">
                     <form action="Filmes" method="POST" class="form-horizontal">
+                        <input type="hidden" value="${filme.id}" name="id" />
                         <div class="form-group">
                             <label for="nome" class="control-label col-md-3">Nome: </label>
                             <div class="col-md-9">
-                                <input type="text" name="nome" value="" class="form-control" required="true" />
+                                <input type="text" name="nome" value="${filme.nome}" class="form-control" required="true" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="genero" class="control-label col-md-3">Gênero: </label>
+                            <div class="col-md-9">
+                                <input type="text" name="genero" value="<!-- igual ao input do nome -->" class="form-control" required="true" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="imagem" class="control-label col-md-3">Imagem: </label>
+                            <div class="col-md-9">
+                                <input type="text" name="imagem" value="<!-- igual ao input do nome -->" class="form-control" required="true" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-3 col-md-9">
+                                <input type="submit" value="Salvar" class="btn btn-primary" />
+                                <input type="button" value="Voltar" class="btn" onclick="history.back()" />
                             </div>
                         </div>
                         <!--Criar os outros inputs para gênero e imagem. Criar o botão para submeter o formulário-->

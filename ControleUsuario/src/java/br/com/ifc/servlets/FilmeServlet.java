@@ -38,16 +38,25 @@ public class FilmeServlet extends HttpServlet {
             if (acao.equalsIgnoreCase("listar")) {
                 request.setAttribute("filmes", service.listar());
                 forward = LISTA_FILMES;
+                RequestDispatcher view = request.getRequestDispatcher(forward);
+                view.forward(request, response);
             } else if (acao.equalsIgnoreCase("editar")) {
                 Integer id = Integer.parseInt(request.getParameter("id"));
                 request.setAttribute("filme", service.getById(id));
                 forward = INSERIR_OU_EDITAR;
+                RequestDispatcher view = request.getRequestDispatcher(forward);
+                view.forward(request, response);
+            } else if (acao.equalsIgnoreCase("excluir")) {
+                Integer id = Integer.parseInt(request.getParameter("id"));
+                service.excluir(id);
+                request.setAttribute("filmes", service.listar());
+                response.sendRedirect("Filmes?acao=listar");
             } else {
                 forward = INSERIR_OU_EDITAR;
+                RequestDispatcher view = request.getRequestDispatcher(forward);
+                view.forward(request, response);
             }
 
-            RequestDispatcher view = request.getRequestDispatcher(forward);
-            view.forward(request, response);
         } catch (Exception ex) {
             ex.printStackTrace();
             request.setAttribute("mensagens", ex.getMessage());

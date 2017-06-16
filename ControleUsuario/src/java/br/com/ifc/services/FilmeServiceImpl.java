@@ -92,5 +92,19 @@ public class FilmeServiceImpl implements FilmeService {
 //            Conexao.closeConnection(rs, ps);
         }
     }
+    
+    @Override
+    public boolean excluir(Integer id) throws Exception {
+        String sql = "delete from filmes where id = ?";
+        PreparedStatement ps = null;
+        try {
+            int i = 1;
+            ps = Conexao.getConnection().prepareStatement(sql);
+            ps.setInt(i++, id); //id do filme que será excluido
+            return ps.executeUpdate() == 1;
+        } finally {
+//            Conexao.closeConnection(rs, ps);
+        }
+    }
 
 }

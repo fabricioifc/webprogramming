@@ -37,6 +37,10 @@
                                 <div class="caption">
                                     <h4>${u.nome}</h4>
                                     <p>${u.genero}</p>
+                                    <p>
+                                        <a href="Filmes?acao=editar&id=${u.id}" class="btn btn-xs btn-warning" role="button">Editar</a>
+                                        <a href="Filmes?acao=excluir&id=${u.id}" class="btn btn-xs btn-danger" role="button">Excluir</a>
+                                    </p>
                                 </div>
                             </div>
                         </div>

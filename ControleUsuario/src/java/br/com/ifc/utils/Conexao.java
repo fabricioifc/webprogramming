@@ -21,7 +21,7 @@ public class Conexao {
     private final static String ADRESS = "jdbc:mysql://localhost";
     private final static String DATABASE = "servlet_login_db";
     private final static String USER = "root";
-    private final static String PASSWORD = "";
+    private final static String PASSWORD = "root";
     private final static String PORT = "3306";
     private final static String DRIVER = "com.mysql.jdbc.Driver";
 

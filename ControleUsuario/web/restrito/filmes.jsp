@@ -30,12 +30,17 @@
                 <div class="panel-body">
                     <c:forEach items="${filmes}" var="u">
                         <div class="col-md-4">
-                            <div class="thumbnail">
-                                Criar um link para Filmes?acao=editar&id=
-                                <img src="${u.imagem}" alt="${u.nome}" class="img-rounded" style="max-height: 300px; width: auto;">
+                            <div class="thumbnail" style="min-height: 300px;">
+                                <a href="Filmes?acao=editar&id=${u.id}">
+                                    <img src="${u.imagem}" alt="${u.nome}" class="img-rounded" style="max-height: 300px; width: auto;">
+                                </a>
                                 <div class="caption">
                                     <h4>${u.nome}</h4>
                                     <p>${u.genero}</p>
+                                    <p>
+                                        <a href="Filmes?acao=editar&id=${u.id}" class="btn btn-xs btn-warning" role="button">Editar</a>
+                                        <!--Criar o link para excluir o filme. Semelhante a linha acima.-->
+                                    </p>
                                 </div>
                             </div>
                         </div>

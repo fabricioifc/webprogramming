@@ -19,5 +19,6 @@ public interface FilmeService {
     
     
     public boolean atualizar(Filmes filme) throws Exception;
+    public boolean excluir(Integer id) throws Exception;
     public Filmes getById(Integer id) throws Exception;
 }

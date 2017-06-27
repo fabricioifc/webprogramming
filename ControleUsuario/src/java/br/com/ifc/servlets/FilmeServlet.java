@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 public class FilmeServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private static String INSERIR_OU_EDITAR = "/restrito/filme.jsp"; //criar o arquivo jsp
+    private static String INSERIR_OU_EDITAR = "/restrito/filme.jsp";
     private static String LISTA_FILMES = "/restrito/filmes.jsp";
     private FilmeService service;
 
@@ -38,19 +38,25 @@ public class FilmeServlet extends HttpServlet {
             if (acao.equalsIgnoreCase("listar")) {
                 request.setAttribute("filmes", service.listar());
                 forward = LISTA_FILMES;
+                RequestDispatcher view = request.getRequestDispatcher(forward);
+                view.forward(request, response);
             } else if (acao.equalsIgnoreCase("editar")) {
                 Integer id = Integer.parseInt(request.getParameter("id"));
-//                utilizar o método setAtribute do objeto request.
-//                Nele você precisa atribuir o retorno do método getById(id) da classe service
-                request.setAttribute(...);
+                request.setAttribute("filme", service.getById(id));
                 forward = INSERIR_OU_EDITAR;
+                RequestDispatcher view = request.getRequestDispatcher(forward);
+                view.forward(request, response);
+            } else if (acao.equalsIgnoreCase("excluir")) {
+                //Pegar o parâmetro id da tela e converter para Integer
+                //Excluir o filme utilizando a classe service
+                request.setAttribute("filmes", service.listar());
+                response.sendRedirect("Filmes?acao=listar");
             } else {
                 forward = INSERIR_OU_EDITAR;
+                RequestDispatcher view = request.getRequestDispatcher(forward);
+                view.forward(request, response);
             }
 
-//            Redireciona para a tela filme.jsp ou filmes.jsp
-            RequestDispatcher view = request.getRequestDispatcher(forward);
-            view.forward(request, response);
         } catch (Exception ex) {
             ex.printStackTrace();
             request.setAttribute("mensagens", ex.getMessage());
@@ -65,26 +71,24 @@ public class FilmeServlet extends HttpServlet {
 
             Filmes filme = new Filmes();
             if (!request.getParameter("id").equals("")) {
-//                setar o id do filme utilizando setId e getParameter
                 filme.setId(Integer.parseInt(request.getParameter("id")));
             }
             filme.setNome(request.getParameter("nome"));
             filme.setImagem(request.getParameter("imagem"));
             filme.setGenero(request.getParameter("genero"));
 
+            System.out.println(filme.toString());
+
             //Se o ID existir significa que o filme será atualizado, 
             //caso contrário será criado um novo filme
             if (filme.getId() == null) {
-                //chamar o método salvar
-                service...
+                service.salvar(filme);
             } else {
-                service...
+                service.atualizar(filme);
             }
 
-            //Criar e setar os parâmetros no objeto Filme (utilize getParameter)
-            //Salvar o filme utilizando a classe service FilmeService
-            
             response.sendRedirect("Filmes?acao=listar");
+
         } catch (Exception ex) {
             ex.printStackTrace();
 //            response.sendRedirect(request.getHeader("Referer"));

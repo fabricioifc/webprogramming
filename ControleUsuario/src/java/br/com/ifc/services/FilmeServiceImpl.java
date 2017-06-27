@@ -37,19 +37,18 @@ public class FilmeServiceImpl implements FilmeService {
             usuarios.add(filme);//Adiciona na lista
         }
         return usuarios;
-        
     }
 
     @Override
-    public boolean salvar(Filmes filme) throws Exception {
-        String sql = "insert into filmes (colunas) values (valores)";
+    public boolean salvar(Filmes usuario) throws Exception {
+        String sql = "insert into filmes (nome, genero, imagem) values (?,?,?)";
         PreparedStatement ps = null;
         try {
             int i = 1;
             ps = Conexao.getConnection().prepareStatement(sql);
-            ps.setString(i++, filme.getNome());
-            ps.setString(i++, filme.getGenero());
-            //setString para o campo imagem do filme
+            ps.setString(i++, usuario.getNome());
+            ps.setString(i++, usuario.getGenero());
+            ps.setString(i++, usuario.getImagem());
             return ps.executeUpdate() == 1;
         } finally {
 //            Conexao.closeConnection(rs, ps);
@@ -67,10 +66,10 @@ public class FilmeServiceImpl implements FilmeService {
 
         if (rs.next()) {
             Filmes filme = new Filmes();
+            filme.setGenero(rs.getString("genero"));
             filme.setId(rs.getInt("id"));
             filme.setNome(rs.getString("nome"));
-            filme.setGenero...
-            filme.setImagem...
+            filme.setImagem(rs.getString("imagem"));
             return filme;
         }
         return null;
@@ -84,8 +83,8 @@ public class FilmeServiceImpl implements FilmeService {
             int i = 1;
             ps = Conexao.getConnection().prepareStatement(sql);
             ps.setString(i++, usuario.getNome());
-            filme.setString...
-            filme.setString...
+            ps.setString(i++, usuario.getGenero());
+            ps.setString(i++, usuario.getImagem());
 
             ps.setInt(i++, usuario.getId()); //id do filme que será atualizado
             return ps.executeUpdate() == 1;
@@ -94,4 +93,17 @@ public class FilmeServiceImpl implements FilmeService {
         }
     }
 
+    @Override
+    public boolean excluir(Integer id) throws Exception {
+        String sql = "delete from filmes where id = ?";
+        PreparedStatement ps = null;
+        try {
+//        Pegar a conexão e criar o preparedStatement
+
+            return ps.executeUpdate() == 1;
+        } finally {
+
+        }
+
+    }
 }

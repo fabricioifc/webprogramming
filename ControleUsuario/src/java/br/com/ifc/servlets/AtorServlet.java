@@ -49,7 +49,7 @@ public class AtorServlet extends HttpServlet {
             } else if (acao.equalsIgnoreCase("editar")) {
                 Integer id = Integer.parseInt(request.getParameter("id"));
                 request.setAttribute("ator", service.getById(id));
-                request.setAttribute("filmes", filmeService.listar());
+                request.setAttribute("filmes", /*Lista de filmes que está na classe filmeService*/);
                 forward = INSERIR_OU_EDITAR;
                 RequestDispatcher view = request.getRequestDispatcher(forward);
                 view.forward(request, response);
@@ -59,7 +59,7 @@ public class AtorServlet extends HttpServlet {
                 request.setAttribute("atores", service.listar());
                 response.sendRedirect("Atores?acao=listar");
             } else {
-                request.setAttribute("filmes", filmeService.listar());
+                request.setAttribute("filmes", /*Lista de filmes que está na classe filmeService*/);
                 forward = INSERIR_OU_EDITAR;
                 RequestDispatcher view = request.getRequestDispatcher(forward);
                 view.forward(request, response);
@@ -87,7 +87,7 @@ public class AtorServlet extends HttpServlet {
 
             ator.setDataNascimento(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("data_nascimento")));
             
-            ator.setFilme(filmeService.getById(Integer.parseInt(request.getParameter("filme_id"))));
+            ator.setFilme(filmeService.getById(Integer.parseInt(/*Parâmetro da requisição filme_id*/)));
 
             System.out.println(ator.toString());
 

@@ -55,7 +55,7 @@
                                 <select name="filme_id" class="form-control" required="true">
                                     <option value="">Selecione o Filme</option>
                                     <c:forEach items="${filmes}" var="filme">
-                                        <option value="${filme.id}" ${ator.filme.id == filme.id ? 'selected' : ''} >${filme.nome}</option>    
+                                        <option value="${/*id do filme*/}" ${ator.filme.id == filme.id ? 'selected' : ''} >${/*Nome do filme*/}</option>    
                                     </c:forEach>
                                 </select>
                             </div>

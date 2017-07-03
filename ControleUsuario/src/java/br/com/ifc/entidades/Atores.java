@@ -18,7 +18,7 @@ public class Atores {
     private Date dataNascimento;
     private Character sexo;
     private String foto;
-    private Filmes filme;
+    private /* Adicionar uma variável para Filme chamada filme*/;
 
     public Atores() {
     }

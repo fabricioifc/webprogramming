@@ -43,7 +43,7 @@
                                     <p>${ator.sexo}</p>
                                     <p>${ator.dataNascimento}</p>
                                     <hr />
-                                    <em>Participou no filme <strong>${ator.filme.nome}</strong></em>
+                                    <em>Participou no filme <strong>${/*Nome do filme que está dentro do ator*/}</strong></em>
                                     <hr />
                                     <p>
                                         <a href="Atores?acao=editar&id=${ator.id}" class="btn btn-xs btn-warning" role="button">Editar</a>

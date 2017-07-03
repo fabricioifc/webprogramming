@@ -47,8 +47,8 @@ public class FilmeServlet extends HttpServlet {
                 RequestDispatcher view = request.getRequestDispatcher(forward);
                 view.forward(request, response);
             } else if (acao.equalsIgnoreCase("excluir")) {
-                //Pegar o parâmetro id da tela e converter para Integer
-                //Excluir o filme utilizando a classe service
+                Integer id = Integer.parseInt(request.getParameter("id"));
+                service.excluir(id);
                 request.setAttribute("filmes", service.listar());
                 response.sendRedirect("Filmes?acao=listar");
             } else {

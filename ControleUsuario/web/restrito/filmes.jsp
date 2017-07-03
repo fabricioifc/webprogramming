@@ -39,7 +39,7 @@
                                     <p>${u.genero}</p>
                                     <p>
                                         <a href="Filmes?acao=editar&id=${u.id}" class="btn btn-xs btn-warning" role="button">Editar</a>
-                                        <!--Criar o link para excluir o filme. Semelhante a linha acima.-->
+                                        <a href="Filmes?acao=excluir&id=${u.id}" class="btn btn-xs btn-danger" role="button">Excluir</a>
                                     </p>
                                 </div>
                             </div>

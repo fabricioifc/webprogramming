@@ -7,7 +7,6 @@ package br.com.ifc.entidades;
 
 import java.util.Date;
 
-
 /**
  *
  * @author fabricio
@@ -19,16 +18,18 @@ public class Atores {
     private Date dataNascimento;
     private Character sexo;
     private String foto;
+    private Filmes filme;
 
     public Atores() {
     }
 
-    public Atores(Integer id, String nome, Date dataNascimento, Character sexo, String foto) {
+    public Atores(Integer id, String nome, Date dataNascimento, Character sexo, String foto, Filmes filme) {
         this.id = id;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.sexo = sexo;
         this.foto = foto;
+        this.filme = filme;
     }
 
     public Integer getId() {
@@ -71,9 +72,17 @@ public class Atores {
         this.foto = foto;
     }
 
+    public Filmes getFilme() {
+        return filme;
+    }
+
+    public void setFilme(Filmes filme) {
+        this.filme = filme;
+    }
+
     @Override
     public String toString() {
-        return "Atores{" + "id=" + id + ", nome=" + nome + ", dataNascimento=" + dataNascimento + ", sexo=" + sexo + ", foto=" + foto + '}';
+        return "Atores{" + "id=" + id + ", nome=" + nome + ", dataNascimento=" + dataNascimento + ", sexo=" + sexo + ", foto=" + foto + ", filme=" + filme + '}';
     }
 
 }

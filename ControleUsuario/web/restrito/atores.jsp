@@ -31,19 +31,23 @@
                     </h3>
                 </div>
                 <div class="panel-body">
-                    <c:forEach items="${atores}" var="u">
-                        <div class="col-md-4">
-                            <div class="thumbnail" style="min-height: 300px;">
-                                <a href="Atores?acao=editar&id=${u.id}">
-                                    <img src="${u.foto}" alt="${u.nome}" class="img-rounded" style="max-height: 300px; width: auto;">
+                    <c:forEach items="${atores}" var="ator">
+                        <div class="col-md-6">
+                            <div class="thumbnail">
+                                <a href="Atores?acao=editar&id=${ator.id}">
+                                    <img src="${ator.foto}" alt="${ator.nome}" class="img-rounded img-thumbnail" style="max-height: 220px;">
                                 </a>
                                 <div class="caption">
-                                    <h4>${u.nome}</h4>
-                                    <p>${u.sexo}</p>
-                                    <p>${u.dataNascimento}</p>
+                                    <hr />
+                                    <h4>${ator.nome}</h4>
+                                    <p>${ator.sexo}</p>
+                                    <p>${ator.dataNascimento}</p>
+                                    <hr />
+                                    <em>Participou no filme <strong>${ator.filme.nome}</strong></em>
+                                    <hr />
                                     <p>
-                                        <a href="Atores?acao=editar&id=${u.id}" class="btn btn-xs btn-warning" role="button">Editar</a>
-                                        <a href="Atores?acao=excluir&id=${u.id}" class="btn btn-xs btn-danger" role="button">Excluir</a>
+                                        <a href="Atores?acao=editar&id=${ator.id}" class="btn btn-xs btn-warning" role="button">Editar</a>
+                                        <a href="Atores?acao=excluir&id=${ator.id}" class="btn btn-xs btn-danger" role="button">Excluir</a>
                                     </p>
                                 </div>
                             </div>

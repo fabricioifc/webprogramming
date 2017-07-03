@@ -6,11 +6,13 @@
 package br.com.ifc.servlets;
 
 import br.com.ifc.entidades.Atores;
+import br.com.ifc.entidades.Filmes;
 import br.com.ifc.services.AtorService;
 import br.com.ifc.services.AtorServiceImpl;
+import br.com.ifc.services.FilmeService;
+import br.com.ifc.services.FilmeServiceImpl;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Locale;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,10 +27,12 @@ public class AtorServlet extends HttpServlet {
     private static String INSERIR_OU_EDITAR = "/restrito/ator.jsp";
     private static String LISTA_ATORES = "/restrito/atores.jsp";
     private AtorService service;
+    private FilmeService filmeService;
 
     public AtorServlet() {
         super();
         service = new AtorServiceImpl();
+        filmeService = new FilmeServiceImpl();
     }
 
     @Override
@@ -45,6 +49,7 @@ public class AtorServlet extends HttpServlet {
             } else if (acao.equalsIgnoreCase("editar")) {
                 Integer id = Integer.parseInt(request.getParameter("id"));
                 request.setAttribute("ator", service.getById(id));
+                request.setAttribute("filmes", filmeService.listar());
                 forward = INSERIR_OU_EDITAR;
                 RequestDispatcher view = request.getRequestDispatcher(forward);
                 view.forward(request, response);
@@ -54,6 +59,7 @@ public class AtorServlet extends HttpServlet {
                 request.setAttribute("atores", service.listar());
                 response.sendRedirect("Atores?acao=listar");
             } else {
+                request.setAttribute("filmes", filmeService.listar());
                 forward = INSERIR_OU_EDITAR;
                 RequestDispatcher view = request.getRequestDispatcher(forward);
                 view.forward(request, response);
@@ -80,6 +86,8 @@ public class AtorServlet extends HttpServlet {
             ator.setSexo(request.getParameter("sexo").charAt(0));
 
             ator.setDataNascimento(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("data_nascimento")));
+            
+            ator.setFilme(filmeService.getById(Integer.parseInt(request.getParameter("filme_id"))));
 
             System.out.println(ator.toString());
 

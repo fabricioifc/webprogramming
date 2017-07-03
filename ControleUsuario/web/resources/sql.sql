@@ -31,6 +31,14 @@ CREATE TABLE atores (
     PRIMARY KEY(id)
 );
 
+alter table atores
+add column filme_id int;
+
+ALTER TABLE atores
+ADD CONSTRAINT fk_atores_1
+FOREIGN KEY (filme_id)
+REFERENCES filmes(id)
+
 -- Insere usuários
 insert into usuarios (nome, email, usuario, senha) values ('admin', 'admin@admin.com.br', 'admin', 'admin');
 

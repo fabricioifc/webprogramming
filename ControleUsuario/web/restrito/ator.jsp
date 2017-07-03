@@ -50,6 +50,17 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="filme_id" class="control-label col-md-3">Filme: </label>
+                            <div class="col-md-9">
+                                <select name="filme_id" class="form-control" required="true">
+                                    <option value="">Selecione o Filme</option>
+                                    <c:forEach items="${filmes}" var="filme">
+                                        <option value="${filme.id}" ${ator.filme.id == filme.id ? 'selected' : ''} >${filme.nome}</option>    
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <div class="col-md-offset-3 col-md-9">
                                 <input type="submit" value="Salvar" class="btn btn-primary" />
                                 <input type="button" value="Voltar" class="btn" onclick="history.back()" />

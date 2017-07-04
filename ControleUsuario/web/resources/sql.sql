@@ -21,24 +21,6 @@ CREATE TABLE filmes (
     PRIMARY KEY(id)
 );
 
-drop table if exists atores;
-CREATE TABLE atores (
-    id INTEGER NOT NULL AUTO_INCREMENT,
-    nome VARCHAR(100) NOT NULL,
-    data_nascimento date NOT NULL,
-    sexo char(1) not null,
-    foto text NOT NULL,
-    PRIMARY KEY(id)
-);
-
-alter table atores
-add column filme_id int;
-
-ALTER TABLE atores
-ADD CONSTRAINT fk_atores_1
-FOREIGN KEY (filme_id)
-REFERENCES filmes(id)
-
 -- Insere usuários
 insert into usuarios (nome, email, usuario, senha) values ('admin', 'admin@admin.com.br', 'admin', 'admin');
 
@@ -49,4 +31,3 @@ insert into filmes (nome, genero, imagem) values ('Logan', 'Quadrinhos', 'http:/
 insert into filmes (nome, genero, imagem) values ('Guardiões da Galáxia 2', 'Quadrinhos', 'http://rollingstone.uol.com.br/media/images/original/2014/07/27/img-1024882-guardioes-da-galaxia.jpg');
 
 select * from filmes;
-select * from atores;

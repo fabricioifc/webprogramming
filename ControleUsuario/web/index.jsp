@@ -21,6 +21,5 @@
         <hr />
         <a href="Usuarios?acao=listar">Lista de Usuários</a> <br />
         <a href="Filmes?acao=listar">Lista de Filmes</a> <br />
-        <a href="Atores?acao=listar">Lista de Atores</a> <br />
     </body>
 </html>

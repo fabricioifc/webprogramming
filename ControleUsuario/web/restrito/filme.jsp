@@ -34,7 +34,12 @@
                         <div class="form-group">
                             <label for="genero" class="control-label col-md-3">Gênero: </label>
                             <div class="col-md-9">
-                                <input type="text" name="genero" value="${filme.genero}" class="form-control" required="true" />
+                                <select name="genero" class="form-control" required="true">
+                                    <option value="">Selecione o Gênero</option>
+                                    <c:forEach items="${generos}" var="g">
+                                        <option value="${g.descricao}">${g.descricao}</option>
+                                    </c:forEach>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">

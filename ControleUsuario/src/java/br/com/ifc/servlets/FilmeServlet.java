@@ -6,9 +6,12 @@
 package br.com.ifc.servlets;
 
 import br.com.ifc.entidades.Filmes;
+import br.com.ifc.entidades.Generos;
 import br.com.ifc.services.FilmeService;
 import br.com.ifc.services.FilmeServiceImpl;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,10 +26,12 @@ public class FilmeServlet extends HttpServlet {
     private static String INSERIR_OU_EDITAR = "/restrito/filme.jsp";
     private static String LISTA_FILMES = "/restrito/filmes.jsp";
     private FilmeService service;
+    private GeneroService generoService;
 
     public FilmeServlet() {
         super();
         service = new FilmeServiceImpl();
+        generoService = new GeneroServiceImpl();
     }
 
     @Override
@@ -34,6 +39,12 @@ public class FilmeServlet extends HttpServlet {
         try {
             String forward = null;
             String acao = request.getParameter("acao");
+
+            List<Generos> listaGeneros = new ArrayList<>();
+            listaGeneros.add(new Generos("Ação"));
+            listaGeneros.add(new Generos("Comédia"));
+            listaGeneros.add(new Generos("Ficção"));
+            request.setAttribute("generos", listaGeneros);
 
             if (acao.equalsIgnoreCase("listar")) {
                 request.setAttribute("filmes", service.listar());
@@ -43,6 +54,7 @@ public class FilmeServlet extends HttpServlet {
             } else if (acao.equalsIgnoreCase("editar")) {
                 Integer id = Integer.parseInt(request.getParameter("id"));
                 request.setAttribute("filme", service.getById(id));
+
                 forward = INSERIR_OU_EDITAR;
                 RequestDispatcher view = request.getRequestDispatcher(forward);
                 view.forward(request, response);

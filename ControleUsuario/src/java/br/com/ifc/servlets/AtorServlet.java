@@ -5,10 +5,14 @@
  */
 package br.com.ifc.servlets;
 
+import br.com.ifc.entidades.Atores;
 import br.com.ifc.entidades.Filmes;
+import br.com.ifc.services.AtorService;
+import br.com.ifc.services.AtorServiceImpl;
 import br.com.ifc.services.FilmeService;
 import br.com.ifc.services.FilmeServiceImpl;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,17 +20,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/Filmes")
-public class FilmeServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/Atores")
+public class AtorServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private static String INSERIR_OU_EDITAR = "/restrito/filme.jsp";
-    private static String LISTA_FILMES = "/restrito/filmes.jsp";
-    private FilmeService service;
+    private static String INSERIR_OU_EDITAR = "/restrito/ator.jsp";
+    private static String LISTA_ATORES = "/restrito/atores.jsp";
+    private AtorService service;
+    private FilmeService filmeService;
 
-    public FilmeServlet() {
+    public AtorServlet() {
         super();
-        service = new FilmeServiceImpl();
+        service = new AtorServiceImpl();
+        filmeService = new FilmeServiceImpl();
     }
 
     @Override
@@ -36,22 +42,24 @@ public class FilmeServlet extends HttpServlet {
             String acao = request.getParameter("acao");
 
             if (acao.equalsIgnoreCase("listar")) {
-                request.setAttribute("filmes", service.listar());
-                forward = LISTA_FILMES;
+                request.setAttribute("atores", service.listar());
+                forward = LISTA_ATORES;
                 RequestDispatcher view = request.getRequestDispatcher(forward);
                 view.forward(request, response);
             } else if (acao.equalsIgnoreCase("editar")) {
                 Integer id = Integer.parseInt(request.getParameter("id"));
-                request.setAttribute("filme", service.getById(id));
+                request.setAttribute("ator", service.getById(id));
+                request.setAttribute("filmes", /*Lista de filmes que está na classe filmeService*/);
                 forward = INSERIR_OU_EDITAR;
                 RequestDispatcher view = request.getRequestDispatcher(forward);
                 view.forward(request, response);
             } else if (acao.equalsIgnoreCase("excluir")) {
                 Integer id = Integer.parseInt(request.getParameter("id"));
                 service.excluir(id);
-                request.setAttribute("filmes", service.listar());
-                response.sendRedirect("Filmes?acao=listar");
+                request.setAttribute("atores", service.listar());
+                response.sendRedirect("Atores?acao=listar");
             } else {
+                request.setAttribute("filmes", /*Lista de filmes que está na classe filmeService*/);
                 forward = INSERIR_OU_EDITAR;
                 RequestDispatcher view = request.getRequestDispatcher(forward);
                 view.forward(request, response);
@@ -69,25 +77,27 @@ public class FilmeServlet extends HttpServlet {
         try {
             request.setCharacterEncoding("utf-8");
 
-            Filmes filme = new Filmes();
+            Atores ator = new Atores();
             if (!request.getParameter("id").equals("")) {
-                filme.setId(Integer.parseInt(request.getParameter("id")));
+                ator.setId(Integer.parseInt(request.getParameter("id")));
             }
-            filme.setNome(request.getParameter("nome"));
-            filme.setImagem(request.getParameter("imagem"));
-            filme.setGenero(request.getParameter("genero"));
+            ator.setNome(request.getParameter("nome"));
+            ator.setFoto(request.getParameter("foto"));
+            ator.setSexo(request.getParameter("sexo").charAt(0));
 
-            System.out.println(filme.toString());
+            ator.setDataNascimento(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("data_nascimento")));
+            
+            ator.setFilme(filmeService.getById(Integer.parseInt(/*Parâmetro da requisição filme_id*/)));
 
-            //Se o ID existir significa que o filme será atualizado, 
-            //caso contrário será criado um novo filme
-            if (filme.getId() == null) {
-                service.salvar(filme);
+            System.out.println(ator.toString());
+
+            if (ator.getId() == null) {
+                service.salvar(ator);
             } else {
-                service.atualizar(filme);
+                service.atualizar(ator);
             }
 
-            response.sendRedirect("Filmes?acao=listar");
+            response.sendRedirect("Atores?acao=listar");
 
         } catch (Exception ex) {
             ex.printStackTrace();

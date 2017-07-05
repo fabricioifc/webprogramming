@@ -20,27 +20,44 @@
             <% }%>
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    <h3>Cadastro de Filmes</h3>
+                    <h3>Cadastro de Atores</h3>
                 </div>
                 <div class="panel-body">
-                    <form action="Filmes" method="POST" class="form-horizontal">
-                        <input type="hidden" value="${filme.id}" name="id" />
+                    <form action="Atores" method="POST" class="form-horizontal">
+                        <input type="hidden" value="${ator.id}" name="id" />
                         <div class="form-group">
                             <label for="nome" class="control-label col-md-3">Nome: </label>
                             <div class="col-md-9">
-                                <input type="text" name="nome" value="${filme.nome}" class="form-control" required="true" />
+                                <input type="text" name="nome" value="${ator.nome}" class="form-control" required="true" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="genero" class="control-label col-md-3">Gênero: </label>
+                            <label for="sexo" class="control-label col-md-3">Sexo: </label>
                             <div class="col-md-9">
-                                <input type="text" name="genero" value="${filme.genero}" class="form-control" required="true" />
+                                <input type="text" name="sexo" value="${ator.sexo}" class="form-control" required="true" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="imagem" class="control-label col-md-3">Imagem: </label>
+                            <label for="data_nascimento" class="control-label col-md-3">Sexo: </label>
                             <div class="col-md-9">
-                                <input type="text" name="imagem" value="${filme.imagem}" class="form-control" required="true" />
+                                <input type="date" name="data_nascimento" value="${ator.dataNascimento}" class="form-control" required="true" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="foto" class="control-label col-md-3">Foto: </label>
+                            <div class="col-md-9">
+                                <input type="text" name="foto" value="${ator.foto}" class="form-control" required="true" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="filme_id" class="control-label col-md-3">Filme: </label>
+                            <div class="col-md-9">
+                                <select name="filme_id" class="form-control" required="true">
+                                    <option value="">Selecione o Filme</option>
+                                    <c:forEach items="${filmes}" var="filme">
+                                        <option value="${/*id do filme*/}" ${ator.filme.id == filme.id ? 'selected' : ''} >${/*Nome do filme*/}</option>    
+                                    </c:forEach>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">

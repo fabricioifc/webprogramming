@@ -85,25 +85,26 @@ public class FilmeServiceImpl implements FilmeService {
             ps.setString(i++, usuario.getNome());
             ps.setString(i++, usuario.getGenero());
             ps.setString(i++, usuario.getImagem());
-
+            
             ps.setInt(i++, usuario.getId()); //id do filme que será atualizado
             return ps.executeUpdate() == 1;
         } finally {
 //            Conexao.closeConnection(rs, ps);
         }
     }
-
+    
     @Override
     public boolean excluir(Integer id) throws Exception {
         String sql = "delete from filmes where id = ?";
         PreparedStatement ps = null;
         try {
-//        Pegar a conexão e criar o preparedStatement
-
+            int i = 1;
+            ps = Conexao.getConnection().prepareStatement(sql);
+            ps.setInt(i++, id); //id do filme que será excluido
             return ps.executeUpdate() == 1;
         } finally {
-
+//            Conexao.closeConnection(rs, ps);
         }
-
     }
+
 }

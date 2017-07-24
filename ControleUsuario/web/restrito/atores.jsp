@@ -12,11 +12,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Filmes</title>
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="../resources/bootstrap/css/bootstrap.min.css"/>
     </head>
     <body>
+        <jsp:include page="../menu.jsp" />
         <div class="container">
             <% if (request.getAttribute("mensagens") != null) { %>
             <p class="alert alert-danger">${mensagens}</p>
@@ -43,7 +42,7 @@
                                     <p>${ator.sexo}</p>
                                     <p>${ator.dataNascimento}</p>
                                     <hr />
-                                    <em>Participou no filme <strong>${/*Nome do filme que está dentro do ator*/}</strong></em>
+                                    <em>Participou no filme <strong>${ator.filme.nome}</strong></em>
                                     <hr />
                                     <p>
                                         <a href="Atores?acao=editar&id=${ator.id}" class="btn btn-xs btn-warning" role="button">Editar</a>

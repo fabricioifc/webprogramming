@@ -44,9 +44,7 @@ public class AtorServiceImpl implements AtorService {
             ator.setNome(rs.getString("nome"));
             ator.setFoto(rs.getString("foto"));
             ator.setDataNascimento(rs.getDate("data_nascimento"));
-            ator.setFilme( /*chamar aqui o método getById da classeFilmeService,
-                    passando rs.getInt("filme_id") por parâmetro
-                     */);
+            ator.setFilme( filmeService.getById(rs.getInt("filme_id")));
             atores.add(ator);//Adiciona na lista
         }
         return atores;
@@ -63,7 +61,7 @@ public class AtorServiceImpl implements AtorService {
             ps.setDate(i++, new java.sql.Date(ator.getDataNascimento().getTime()), Calendar.getInstance(Locale.PRC));
             ps.setString(i++, ator.getSexo().toString());
             ps.setString(i++, ator.getFoto());
-            ps.setInt(i++, /*id do filme que está dentro do ator*/);
+            ps.setInt(i++, ator.getId());
             return ps.executeUpdate() == 1;
         } finally {
 //            Conexao.closeConnection(rs, ps);

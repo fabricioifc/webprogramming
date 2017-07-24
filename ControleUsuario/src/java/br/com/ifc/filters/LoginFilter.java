@@ -30,8 +30,25 @@ public class LoginFilter implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-//        Implementar o filtro
+    public void doFilter(ServletRequest request,
+            ServletResponse response,
+            FilterChain chain) throws IOException, ServletException {
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        HttpServletResponse httpResponse = (HttpServletResponse) response;
+
+        try {
+            //Pega a sessão do usuário, caso exista
+            HttpSession sessao = httpRequest.getSession(false);
+            boolean logado = sessao != null && sessao.getAttribute("usuarioLogado") != null;
+
+            if (logado) {
+                //Siga em frente
+                chain.doFilter(request, response);
+            } else {
+                httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+            }
+        } finally {
+        }
     }
 
     @Override

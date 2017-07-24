@@ -9,18 +9,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Usuários</title>
 
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <style type="text/css">
-            .tabela {
-                color: brown;
-            }
-            .tabela > thead > tr > th {
-                color: blue;
-            }
-        </style>
+        <link rel="stylesheet" href="../resources/bootstrap/css/bootstrap.min.css"/>
     </head>
     <body>
+        <jsp:include page="../menu.jsp" />
         <div class="container">
             <table class="table table-striped" >
                 <thead>

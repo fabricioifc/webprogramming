@@ -35,13 +35,6 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="cpf" class="col-md-3 control-label">CPF:</label>
-                            <div class="col-md-9">
-                                <input type="text" name="cpf" value="<c:out value="${usuario.cpf}" />" class="form-control" placeholder="Informe seu CPF" required="true" />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
                             <label for="usuario" class="col-md-3 control-label">Usuário:</label>
                             <div class="col-md-9">
                                 <input type="text" name="usuario" value="<c:out value="${usuario.usuario}" />" class="form-control"placeholder="Informe seu código de usuário" required="true" />

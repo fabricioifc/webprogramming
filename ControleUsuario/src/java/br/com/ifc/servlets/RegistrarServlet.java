@@ -8,6 +8,7 @@ package br.com.ifc.servlets;
 import br.com.ifc.entidades.Usuarios;
 import br.com.ifc.services.UsuarioService;
 import br.com.ifc.services.UsuarioServiceImpl;
+import br.com.ifc.utils.Criptografia;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,8 +21,8 @@ import javax.servlet.http.HttpServletResponse;
 public class RegistrarServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private static final String REGISTRAR = "/registrar.jsp";
-    private static final String EFETUAR_LOGIN = "/login.jsp";
+    private static String REGISTRAR = "/registrar.jsp";
+    private static String EFETUAR_LOGIN = "/login.jsp";
     private UsuarioService service;
 
     public RegistrarServlet() {
@@ -53,16 +54,7 @@ public class RegistrarServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            Usuarios usuario = new Usuarios();
-            usuario.setNome(request.getParameter("nome"));
-            usuario.setEmail(request.getParameter("email"));
-            usuario.setUsuario(request.getParameter("usuario"));
-            //Criptografar a senha para gravar no banco de dados
-            usuario.setSenha(request.getParameter("senha"));
-            if (service.getByUsuario(usuario.getUsuario()) != null) {
-                throw new Exception("Usuário " + usuario.getUsuario() + " já existe!");
-            }
-            service.salvar(usuario);
+            /*Adicionar o código que está faltando*/
 
             RequestDispatcher view = request.getRequestDispatcher(EFETUAR_LOGIN);
             request.getSession().setAttribute("mensagens", "Usuário registrado com sucesso!");

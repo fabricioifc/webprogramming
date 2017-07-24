@@ -16,6 +16,8 @@ public interface FilmeService {
 
     public List<Filmes> listar() throws Exception;
     public boolean salvar(Filmes filme) throws Exception;
+    
+    
     public boolean atualizar(Filmes filme) throws Exception;
     public boolean excluir(Integer id) throws Exception;
     public Filmes getById(Integer id) throws Exception;

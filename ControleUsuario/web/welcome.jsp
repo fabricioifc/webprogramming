@@ -4,6 +4,7 @@
     Author     : fabricio
 --%>
 
+<%@page import="br.com.ifc.entidades.Usuarios"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,6 +13,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>login.jsp</h1>
+        <h1>Seja bem vindo!</h1>
     </body>
 </html>

@@ -9,9 +9,42 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Usuários</title>
 
-        <link rel="stylesheet" href="../resources/bootstrap/css/bootstrap.min.css"/>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <style type="text/css">
+            .tabela {
+                color: brown;
+            }
+            .tabela > thead > tr > th {
+                color: blue;
+            }
+        </style>
     </head>
     <body>
-        Adicionar o componente table para listar os usuários
+        <div class="container">
+            <table class="table table-striped" >
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Usuário</th>
+                        <th>Email</th>
+                        <th>Senha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach items="${usuarios}" var="u">
+                        <tr>
+                            <td>${u.id}</td>
+                            <td>${u.nome}</td>
+                            <td>${u.usuario}</td>
+                            <td>${u.email}</td>
+                            <td>${u.senha}</td>
+                        </tr>
+                    </c:forEach>
+
+                </tbody>
+            </table>
+        </div>
     </body>
 </html>

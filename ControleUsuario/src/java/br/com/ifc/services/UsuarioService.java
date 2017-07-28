@@ -19,6 +19,7 @@ public interface UsuarioService {
     public boolean atualizar(Usuarios usuario) throws Exception;
     public boolean deletar(Integer usuario) throws Exception;
     public Usuarios getById(Integer id) throws Exception;
-    public Usuarios autenticar(String usuario, String senha) throws Exception;
     public Usuarios getByUsuario(String usuario) throws Exception;
+    
+//    public Usuarios autenticar(String usuario, String senha) throws Exception;
 }

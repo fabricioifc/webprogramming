@@ -29,15 +29,7 @@ public class LogoutServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            HttpSession sessao = request.getSession(); //obtem a sessao do usuario, caso exista
-
-            sessao.setAttribute("usuarioLogado", null);
-            sessao.invalidate();
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        
     }
 
 }

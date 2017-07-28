@@ -11,8 +11,5 @@
     </session-config>
     
     <!-- Adicionar no arquivo web.xml -->
-    <error-page>
-        <error-code>401</error-code>
-        <location>/negado.jsp</location>
-    </error-page>
+    
 </web-app>

@@ -5,18 +5,19 @@
  */
 package br.com.ifc.services;
 
-import br.com.ifc.entidades.Filmes;
+import br.com.ifc.entidades.Atores;
+import br.com.ifc.entidades.Atores;
 import java.util.List;
 
 /**
  *
  * @author fabricio
  */
-public interface FilmeService {
+public interface AtorService {
 
-    public List<Filmes> listar() throws Exception;
-    public boolean salvar(Filmes filme) throws Exception;
-    public boolean atualizar(Filmes filme) throws Exception;
+    public List<Atores> listar() throws Exception;
+    public boolean salvar(Atores ator) throws Exception;
+    public boolean atualizar(Atores ator) throws Exception;
     public boolean excluir(Integer id) throws Exception;
-    public Filmes getById(Integer id) throws Exception;
+    public Atores getById(Integer id) throws Exception;
 }

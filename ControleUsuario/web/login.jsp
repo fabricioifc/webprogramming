@@ -1,4 +1,4 @@
-<%--
+<%-- 
     Document   : index
     Created on : 05/12/2016, 11:07:59
     Author     : fabricio
@@ -9,9 +9,20 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Login</title>
+        <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css"/>
     </head>
     <body>
-        <h1>login.jsp</h1>
+        <jsp:include page="menu.jsp" />
+        <div class="container">
+            <% if (request.getSession().getAttribute("mensagens") != null) {%>
+            <p class="well-sm bg-danger"><%= request.getSession().getAttribute("mensagens")%></p>
+            <%}%>
+
+            <form method="post" action="Autenticador">
+                Adicionar os inputs para usuário e senha e um botão para submit<br />
+                Utilize as classes bootstrap para estilos
+            </form>
+        </div>
     </body>
 </html>

@@ -9,11 +9,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=ISO_8859-1">
         <title>Filmes</title>
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="../resources/bootstrap/css/bootstrap.min.css"/>
     </head>
     <body>
+        <jsp:include page="../menu.jsp" />
         <div class="container">
             <% if (request.getAttribute("mensagens") != null) { %>
             <p class="alert alert-danger">${mensagens}</p>

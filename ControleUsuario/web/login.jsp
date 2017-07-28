@@ -22,6 +22,9 @@
             <form method="post" action="Autenticador">
                 Adicionar os inputs para usuário e senha e um botão para submit<br />
                 Utilize as classes bootstrap para estilos
+                <input type="text" name="usuario" />
+                <input type="text" name="senha" />
+                <input type="submit" value="Acessar" />
             </form>
         </div>
     </body>

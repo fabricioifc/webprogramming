@@ -12,6 +12,31 @@
         <link rel="stylesheet" href="../resources/bootstrap/css/bootstrap.min.css"/>
     </head>
     <body>
-        Adicionar o componente table para listar os usuários
+        <jsp:include page="../menu.jsp" />
+        <div class="container">
+            <table class="table table-striped" >
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Usuário</th>
+                        <th>Email</th>
+                        <th>Senha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach items="${usuarios}" var="u">
+                        <tr>
+                            <td>${u.id}</td>
+                            <td>${u.nome}</td>
+                            <td>${u.usuario}</td>
+                            <td>${u.email}</td>
+                            <td>${u.senha}</td>
+                        </tr>
+                    </c:forEach>
+
+                </tbody>
+            </table>
+        </div>
     </body>
 </html>

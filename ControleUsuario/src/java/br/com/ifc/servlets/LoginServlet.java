@@ -7,6 +7,7 @@ package br.com.ifc.servlets;
 
 import br.com.ifc.entidades.Usuarios;
 import br.com.ifc.services.UsuarioService;
+import br.com.ifc.services.UsuarioServiceImpl;
 import br.com.ifc.utils.Criptografia;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -20,12 +21,16 @@ import javax.servlet.http.HttpSession;
  *
  * @author fabricio
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
+@WebServlet(name = "LoginServlet", urlPatterns = {"/Autenticador"})
 public class LoginServlet extends HttpServlet {
-    
+
     private UsuarioService service;
 
-   @Override
+    public LoginServlet() {
+        service = new UsuarioServiceImpl();
+    }
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             HttpSession sessao = request.getSession(); //obtem a sessao do usuario, caso exista

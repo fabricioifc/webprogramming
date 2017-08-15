@@ -76,6 +76,9 @@ public class FilmeServlet extends HttpServlet {
             filme.setNome(request.getParameter("nome"));
             filme.setImagem(request.getParameter("imagem"));
             filme.setGenero(request.getParameter("genero"));
+            if (request.getParameter("estrelas") != null) {
+                filme.setEstrelas(Integer.parseInt(request.getParameter("estrelas")));
+            }
 
             System.out.println(filme.toString());
 

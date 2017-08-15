@@ -15,12 +15,14 @@ public class Filmes {
     private String nome;
     private String genero;
     private String imagem;
+    private Integer estrelas;
 
-    public Filmes(Integer id, String nome, String genero, String imagem) {
+    public Filmes(Integer id, String nome, String genero, String imagem, Integer estrelas) {
         this.id = id;
         this.nome = nome;
         this.genero = genero;
         this.imagem = imagem;
+        this.estrelas = estrelas;
     }
 
     public Filmes() {
@@ -58,9 +60,17 @@ public class Filmes {
         this.imagem = imagem;
     }
 
+    public Integer getEstrelas() {
+        return estrelas;
+    }
+
+    public void setEstrelas(Integer estrelas) {
+        this.estrelas = estrelas;
+    }
+
     @Override
     public String toString() {
-        return "Filmes{" + "id=" + id + ", nome=" + nome + ", genero=" + genero + ", imagem=" + imagem + '}';
+        return "Filmes{" + "id=" + id + ", nome=" + nome + ", genero=" + genero + ", imagem=" + imagem + ", estrelas=" + estrelas + '}';
     }
 
 }

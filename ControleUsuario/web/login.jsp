@@ -19,9 +19,31 @@
             <p class="well-sm bg-danger"><%= request.getSession().getAttribute("mensagens")%></p>
             <%}%>
 
-            <form method="post" action="Autenticador">
-                Adicionar os inputs para usuário e senha e um botão para submit<br />
-                Utilize as classes bootstrap para estilos
+            <form method="post" action="Autenticador" class="form-horizontal">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3>Acessar o sistena</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="nome" class="col-md-3 control-label">Nome:</label>
+                            <div class="col-md-9">
+                                <input type="text" name="usuario" class="form-control" autofocus="true" placeholder="Usuário"  required="true" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="senha" class="col-md-3 control-label">Senha:</label>
+                            <div class="col-md-9">
+                                <input type="password" name="senha" class="form-control"placeholder="Informe uma senha" required="true" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="panel-footer">
+                        <input type="submit" value="Login" class="btn btn-primary" />
+                    </div>
+                </div>
             </form>
         </div>
     </body>

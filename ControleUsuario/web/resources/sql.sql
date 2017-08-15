@@ -53,3 +53,6 @@ select * from atores;
 
 alter table usuarios
 add column idadmin boolean default false;
+
+alter table filmes
+add column estrelas int default null;

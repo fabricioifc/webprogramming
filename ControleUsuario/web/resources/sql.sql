@@ -50,3 +50,6 @@ insert into filmes (nome, genero, imagem) values ('Guardiões da Galáxia 2', 'Q
 
 select * from filmes;
 select * from atores;
+
+alter table usuarios
+add column idadmin boolean default false;

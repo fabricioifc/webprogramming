@@ -15,6 +15,10 @@ import java.security.MessageDigest;
  */
 public class Criptografia {
 
-    /*adicionar o método criptografar*/
+    public static String criptografar(String senhaOriginal) throws Exception {
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        BigInteger hash = new BigInteger(1, md.digest(senhaOriginal.getBytes()));
+        return String.format("%32x", hash);
+    }
 
 }

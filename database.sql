@@ -37,7 +37,7 @@ add column filme_id int;
 ALTER TABLE atores
 ADD CONSTRAINT fk_atores_1
 FOREIGN KEY (filme_id)
-REFERENCES filmes(id)
+REFERENCES filmes(id);
 
 -- Insere usuários (senha: admin)
 insert into usuarios (nome, email, usuario, senha) values ('admin', 'admin@admin.com.br', 'admin', '21232f297a57a5a743894a0e4a801fc3');

@@ -4,31 +4,31 @@ use servlet_login_db;
 
 drop table if exists usuarios;
 CREATE TABLE usuarios (
-  id int(11) NOT NULL AUTO_INCREMENT,
-  nome varchar(255) NOT NULL,
-  email varchar(255) NOT NULL,
-  usuario varchar(45) NOT NULL,
-  senha varchar(255) NOT NULL,
-  PRIMARY KEY (id)
+	  id int(11) NOT NULL AUTO_INCREMENT,
+	  nome varchar(255) NOT NULL,
+	  email varchar(255) NOT NULL,
+	  usuario varchar(45) NOT NULL,
+	  senha varchar(255) NOT NULL,
+	  PRIMARY KEY (id)
 );
 
 drop table if exists filmes;
 CREATE TABLE filmes (
-    id INTEGER NOT NULL AUTO_INCREMENT,
-    nome VARCHAR(100) NOT NULL,
-    genero VARCHAR(40) NOT NULL,
-    imagem text NOT NULL,
-    PRIMARY KEY(id)
+	    id INTEGER NOT NULL AUTO_INCREMENT,
+	    nome VARCHAR(100) NOT NULL,
+	    genero VARCHAR(40) NOT NULL,
+	    imagem text NOT NULL,
+	    PRIMARY KEY(id)
 );
 
 drop table if exists atores;
 CREATE TABLE atores (
-    id INTEGER NOT NULL AUTO_INCREMENT,
-    nome VARCHAR(100) NOT NULL,
-    data_nascimento date NOT NULL,
-    sexo char(1) not null,
-    foto text NOT NULL,
-    PRIMARY KEY(id)
+	    id INTEGER NOT NULL AUTO_INCREMENT,
+	    nome VARCHAR(100) NOT NULL,
+	    data_nascimento date NOT NULL,
+	    sexo char(1) not null,
+	    foto text NOT NULL,
+	    PRIMARY KEY(id)
 );
 
 alter table atores

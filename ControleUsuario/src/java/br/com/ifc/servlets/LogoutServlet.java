@@ -5,9 +5,6 @@
  */
 package br.com.ifc.servlets;
 
-import br.com.ifc.entidades.Usuarios;
-import br.com.ifc.services.UsuarioService;
-import br.com.ifc.services.UsuarioServiceImpl;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,16 +17,20 @@ import javax.servlet.http.HttpSession;
  *
  * @author fabricio
  */
-@WebServlet("/LogoutServlet")
+@WebServlet(name = "LogoutServlet", urlPatterns = {"/LogoutServlet"})
 public class LogoutServlet extends HttpServlet {
 
-    public LogoutServlet() {
-        super();
-    }
-
-    @Override
+   @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+        try {
+            HttpSession sessao = request.getSession(); //obtem a sessao do usuario, caso exista
+
+            sessao.setAttribute("usuarioLogado", null);
+            sessao.invalidate();
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

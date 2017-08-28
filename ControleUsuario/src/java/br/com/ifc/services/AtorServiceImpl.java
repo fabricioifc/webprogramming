@@ -61,7 +61,7 @@ public class AtorServiceImpl implements AtorService {
             ps.setDate(i++, new java.sql.Date(ator.getDataNascimento().getTime()), Calendar.getInstance(Locale.PRC));
             ps.setString(i++, ator.getSexo().toString());
             ps.setString(i++, ator.getFoto());
-            ps.setInt(i++, ator.getId());
+            ps.setInt(i++, ator.getFilme().getId());
             return ps.executeUpdate() == 1;
         } finally {
 //            Conexao.closeConnection(rs, ps);

@@ -10,6 +10,7 @@
         <title>Filmes</title>
 
         <link rel="stylesheet" href="../resources/bootstrap/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../resources/estrelas.css" />
     </head>
     <body>
         <jsp:include page="../menu.jsp" />
@@ -40,6 +41,18 @@
                             <label for="imagem" class="control-label col-md-3">Imagem: </label>
                             <div class="col-md-9">
                                 <input type="text" name="imagem" value="${filme.imagem}" class="form-control" required="true" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="estrelas" class="control-label col-md-3">Avaliação: ${filme.estrelas}</label>
+                            <div class="col-md-9">
+                                <span class="star-rating star-5">
+                                    <input type="radio" name="estrelas" value="1" ${filme.estrelas == 1 ? 'checked' : ''}><i></i>
+                                    <input type="radio" name="estrelas" value="2" ${filme.estrelas == 2 ? 'checked' : ''}><i></i>
+                                    <input type="radio" name="estrelas" value="3" ${filme.estrelas == 3 ? 'checked' : ''}><i></i>
+                                    <input type="radio" name="estrelas" value="4" ${filme.estrelas == 4 ? 'checked' : ''}><i></i>
+                                    <input type="radio" name="estrelas" value="5" ${filme.estrelas == 5 ? 'checked' : ''}><i></i>
+                                </span>
                             </div>
                         </div>
                         <div class="form-group">

@@ -21,5 +21,5 @@ public interface UsuarioService {
     public Usuarios getById(Integer id) throws Exception;
     public Usuarios getByUsuario(String usuario) throws Exception;
     
-//    public Usuarios autenticar(String usuario, String senha) throws Exception;
+    public Usuarios autenticar(String usuario, String senha) throws Exception;
 }

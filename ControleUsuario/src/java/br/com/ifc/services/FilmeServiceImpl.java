@@ -34,6 +34,7 @@ public class FilmeServiceImpl implements FilmeService {
             filme.setId(rs.getInt("id"));
             filme.setNome(rs.getString("nome"));
             filme.setImagem(rs.getString("imagem"));
+            filme.setEstrelas(rs.getInt("estrelas"));
             usuarios.add(filme);//Adiciona na lista
         }
         return usuarios;
@@ -41,7 +42,7 @@ public class FilmeServiceImpl implements FilmeService {
 
     @Override
     public boolean salvar(Filmes usuario) throws Exception {
-        String sql = "insert into filmes (nome, genero, imagem) values (?,?,?)";
+        String sql = "insert into filmes (nome, genero, imagem, estrelas) values (?,?,?,?)";
         PreparedStatement ps = null;
         try {
             int i = 1;
@@ -49,6 +50,7 @@ public class FilmeServiceImpl implements FilmeService {
             ps.setString(i++, usuario.getNome());
             ps.setString(i++, usuario.getGenero());
             ps.setString(i++, usuario.getImagem());
+            ps.setInt(i++, usuario.getEstrelas());
             return ps.executeUpdate() == 1;
         } finally {
 //            Conexao.closeConnection(rs, ps);
@@ -70,6 +72,7 @@ public class FilmeServiceImpl implements FilmeService {
             filme.setId(rs.getInt("id"));
             filme.setNome(rs.getString("nome"));
             filme.setImagem(rs.getString("imagem"));
+            filme.setEstrelas(rs.getInt("estrelas"));
             return filme;
         }
         return null;
@@ -77,7 +80,7 @@ public class FilmeServiceImpl implements FilmeService {
 
     @Override
     public boolean atualizar(Filmes usuario) throws Exception {
-        String sql = "update filmes set nome = ?, genero = ?, imagem = ? where id = ?";
+        String sql = "update filmes set nome = ?, genero = ?, imagem = ?, estrelas = ? where id = ?";
         PreparedStatement ps = null;
         try {
             int i = 1;
@@ -85,6 +88,7 @@ public class FilmeServiceImpl implements FilmeService {
             ps.setString(i++, usuario.getNome());
             ps.setString(i++, usuario.getGenero());
             ps.setString(i++, usuario.getImagem());
+            ps.setInt(i++, usuario.getEstrelas());
             
             ps.setInt(i++, usuario.getId()); //id do filme que será atualizado
             return ps.executeUpdate() == 1;

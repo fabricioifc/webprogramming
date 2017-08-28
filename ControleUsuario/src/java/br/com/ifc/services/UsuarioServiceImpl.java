@@ -115,7 +115,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 //    public Usuarios autenticar(String usuario, String senha) throws Exception {
 //        
 //    }
-
     @Override
     public Usuarios getByUsuario(String usuario) throws Exception {
         Usuarios user = new Usuarios();
@@ -136,6 +135,30 @@ public class UsuarioServiceImpl implements UsuarioService {
             return null;
         } catch (SQLException e) {
             throw e;
+        }
+    }
+
+    @Override
+    public Usuarios autenticar(String usuario, String senha) throws Exception {
+        String sql = "select * from usuarios where usuario=? and senha=?";
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        try {
+            ps = Conexao.getConnection().prepareStatement(sql);
+            ps.setString(1, usuario);
+            ps.setString(2, senha);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                Usuarios u = new Usuarios(
+                        rs.getInt("id"),
+                        rs.getString("nome"),
+                        rs.getString("email"),
+                        rs.getString("usuario"),
+                        rs.getString("senha"));
+                return u;
+            }
+            return null;
+        } finally {
         }
     }
 

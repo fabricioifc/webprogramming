@@ -54,8 +54,23 @@ public class RegistrarServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            /*Adicionar o código que está faltando*/
-            
+            Usuarios usuario = new Usuarios();
+            usuario.setNome(request.getParameter("nome"));
+            usuario.setEmail(request.getParameter("email"));
+            usuario.setUsuario(request.getParameter("usuario"));
+
+            //Criptografar a senha para gravar no banco de dados
+            usuario.setSenha(Criptografia.criptografar(request.getParameter("senha")));
+            //As senha dos dois campos devem ser iguais
+            if (!request.getParameter("senha").equals(request.getParameter("confirmacao"))) {
+                throw new Exception("Os dois campos de senha devem ter o mesmo valor!");
+            }
+            //Não pode cadastrar dois usuários iguais
+            if (service.getByUsuario(usuario.getUsuario()) != null) {
+                throw new Exception("Usuário " + usuario.getUsuario() + " já existe!");
+            }
+            //Salva o usuário
+            service.salvar(usuario);
 
             RequestDispatcher view = request.getRequestDispatcher(EFETUAR_LOGIN);
             request.getSession().setAttribute("mensagens", "Usuário registrado com sucesso!");

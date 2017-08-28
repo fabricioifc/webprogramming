@@ -15,8 +15,8 @@
     <body>
         <jsp:include page="menu.jsp" />
         <div class="container">
-            <% if (request.getSession().getAttribute("mensagens") != null) {%>
-            <p class="well-sm bg-danger"><%= request.getSession().getAttribute("mensagens")%></p>
+            <% if (request.getAttribute("mensagens") != null) {%>
+            <p class="well-sm bg-danger"><%= request.getAttribute("mensagens")%></p>
             <%}%>
 
             <form method="post" action="Autenticador" class="form-horizontal">

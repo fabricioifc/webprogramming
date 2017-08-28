@@ -44,6 +44,7 @@ public class LoginServlet extends HttpServlet {
             //se nao encontrou usuario no banco, redireciona para a pagina de erro!
             if (usuario == null) {
                 sessao.invalidate();
+                request.setAttribute("mensagens", "Usuário e/ou senha inválido!");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             } else {
                 //se o dao retornar um usuario, coloca o mesmo na sessao

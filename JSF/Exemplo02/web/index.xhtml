@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h1>Exemplo 02</h1>
+        <h:messages />
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="n1" value="Número 01: " />
+                <h:inputText id="n1" value="#{calculadoraBean.n1}" required="true">
+                    <f:validateLongRange minimum="1" />
+                    <f:convertNumber minIntegerDigits="1" />
+                </h:inputText>
+
+                <h:outputLabel for="n2" value="Número 02: " />
+                <h:inputText id="n2" value="#{calculadoraBean.n2}" required="true">
+                    <f:validateLongRange minimum="1" />
+                    <f:convertNumber minIntegerDigits="1" />
+                </h:inputText>
+
+                <h:outputLabel value="" />
+                <h:column>
+                    <h:commandButton value="Somar" action="#{calculadoraBean.somar()}" />
+                    <h:commandButton value="Subtrair" action="#{calculadoraBean.subtrair()}" />
+                </h:column>
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+

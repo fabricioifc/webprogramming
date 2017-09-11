@@ -1,0 +1,3 @@
+- Adicionado template com facelets
+- Adicionado estilos.css
+- Adicionado AbstractBean para pegar a URI atual e mostrar no footer

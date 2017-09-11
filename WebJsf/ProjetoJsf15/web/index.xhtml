@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view locale="en">
+        <h:head>
+            <title>Facelet Title</title>
+        </h:head>
+        <h:body>
+            <h:messages />
+
+            <h:outputText value="#{msg.clienteTela}" />
+            <hr />
+
+            <h:form prependId="false">
+                <h:panelGrid columns="3">
+                    <h:outputLabel for="nome" value="#{msg.nome}" />
+                    <h:inputText id="nome" value="#{clienteBean.cliente.nome}" required="true" requiredMessage="Informe o nome do cliente">
+                        <f:validateLength minimum="3" maximum="50" />
+                    </h:inputText>
+                    <h:messages for="nome" />
+                    <h:outputLabel for="email" value="#{msg.email}" />
+                    <h:inputText id="email" value="#{clienteBean.cliente.email}" required="true" requiredMessage="Informe o e-mail do cliente" 
+                                 validatorMessage="Informe um e-mail válido!">
+                        <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                    </h:inputText>
+                    <h:messages for="email" />
+                    <h:outputLabel for="idade" value="#{msg.idade}" />
+                    <h:inputText id="idade" value="#{clienteBean.cliente.idade}" required="true" requiredMessage="Informe a idade do cliente">
+                        <f:validateLongRange minimum="1" maximum="100" />
+                    </h:inputText>
+                    <h:messages for="idade" />
+                    <h:outputLabel for="salario" value="#{msg.salario}" />
+                    <h:inputText id="salario" value="#{clienteBean.cliente.salario}" required="true" requiredMessage="Informe o salário do cliente">
+                        <f:convertNumber type="currency" pattern="###0.00"/>
+                    </h:inputText>
+                    <h:messages for="salario" />
+                    <h:outputLabel for="dataNascimento" value="#{msg.dataNascimento}" />
+                    <h:inputText id="dataNascimento" value="#{clienteBean.cliente.dataNascimento}" required="true" requiredMessage="Informe a data de nascimento do cliente">
+                        <!--01/01/17-->
+                        <!--<f:convertDateTime dateStyle="short" />-->
+                        <!--01/01/2017-->
+                        <f:convertDateTime locale="pt_BR" />
+                        <f:validator validatorId="dataNascimentoValidator" />
+                    </h:inputText>
+                    <h:messages for="dataNascimento" />
+                    <h:outputLabel for="tipoPessoa" value="#{msg.tipoPessoa}" />
+                    <h:selectOneMenu id="tipoPessoa" value="#{clienteBean.cliente.tipoPessoa}" requiredMessage="Campo obrigatório">
+                        <f:selectItem itemValue="" itemLabel="Seleciona o tipo" />
+                        <f:selectItems value="#{clienteBean.tipos}" var="t" itemLabel="#{t.descricao}" itemValue="#{t}"  />
+                    </h:selectOneMenu>
+                    <h:messages for="tipoPessoa" />
+                </h:panelGrid>
+                <h:commandButton value="#{msg.salvar}" action="#{clienteBean.salvarCliente()}" />
+            </h:form>
+        </h:body>
+    </f:view>
+</html>

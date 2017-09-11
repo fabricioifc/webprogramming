@@ -1,0 +1,5 @@
+- Adicionar um campo de data de nascimento ao cliente
+- Adicionar converter a data de nascimento na página index.xhtml
+- Adicionar converter data de nascimento no datatable
+
+- Implementar um validator para impedir que o usuário informe uma data superior a data atual

@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <title>Pizzas | Pizzaria</title>
+            <h:outputStylesheet library="css" name="bootstrap.css" />
+        </h:head>
+        <h:body>
+            <div class="container">
+                <h:form class="form-horizontal" id="formulario">
+
+                    <div class="row">
+                        <h:messages id="avisos" showDetail="true" showSummary="false"/>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3>Cadastro de pizzas</h3>
+                            </div>
+                            <div class="panel-body">
+
+                                <div class="form-group">
+                                    <h:outputLabel for="nome" class="control-label col-md-2" value="Nome: " />
+                                    <div class="col-md-10">
+                                        <h:inputText value="#{pizzaMB.pizza.nome}" id="nome" label="Nome" 
+                                                     class="form-control" required="true" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <h:outputLabel for="pizzaria" class="control-label col-md-2" value="Pizzaria: " />
+                                    <div class="col-md-10">
+                                        <h:selectOneMenu label="Pizzaria" id="pizzaria" class="form-control"
+                                                         value="#{pizzaMB.pizza.pizzaria}" required="true">
+                                            <f:selectItems value="#{pizzaMB.itensPizzaria}"/>
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div>
+
+                                <p:dataTable id="checkboxDT" var="car" value="#{pizzaMB.ingredientes}" selection="#{pizzaMB.ingredientesSelecionados}" rowKey="#{car.idingrediente}">
+                                    <f:facet name="header">
+                                        Selecione os ingredientes da pizza #{pizzaMB.pizza.nome}
+                                    </f:facet>
+                                    <p:column selectionMode="multiple" style="width:36px;text-align:center"/>
+                                    <p:column headerText="Ingrediente">
+                                        <h:outputText value="#{car.nome}" />
+                                    </p:column>
+                                </p:dataTable>
+
+                            </div>
+                            <div class="panel-footer">
+                                <h:commandButton actionListener="#{pizzaMB.salvar()}"
+                                                 value="Salvar" class="btn btn-success">
+                                    <f:ajax execute="@form :formularioLista" render="@form :formularioLista :avisos" /> 
+                                </h:commandButton>
+                            </div>
+                        </div>
+
+                    </div>
+                </h:form>
+                <h:form id="formularioLista">
+
+                    <div class="row">
+                        <p:dataTable var="obj" value="#{pizzaMB.pizzas}">
+                            <f:facet name="header">
+                                <h:outputText value="Lista de pizzarias" />
+                            </f:facet>
+                            <p:column headerText="#">
+                                <h:outputText value="#{obj.idpizza}" />
+                            </p:column>
+
+                            <p:column headerText="Nome">
+                                <h:outputText value="#{obj.nome}" />
+                            </p:column>
+
+                            <p:column headerText="Pizzaria">
+                                <h:outputText value="#{obj.pizzaria.nome}" />
+                            </p:column>
+
+                            <p:column headerText="Ingredientes">
+                                <ui:repeat var="i" value="#{obj.ingredientes}">
+                                    <h:outputText value="#{i.nome}" />
+                                    <h:outputText value=", " />
+                                </ui:repeat>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Ações" />
+                                </f:facet>
+                                <h:commandButton value="Alterar" action="#{pizzaMB.prepararAlterar()}">
+                                    <f:ajax execute=":formulario" render=":formulario" /> 
+                                    <f:setPropertyActionListener target="#{pizzaMB.pizza}" value="#{obj}" />
+                                </h:commandButton>
+                                <h:commandButton value="Excluir" action="#{pizzaMB.remover}" onclick="return confirm('Tem certeza?')">
+                                    <f:ajax execute="@this" render="@form" /> 
+                                    <f:setPropertyActionListener target="#{pizzaMB.pizza}" value="#{obj}" />
+                                </h:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+                </h:form>
+            </div>
+        </h:body>
+    </f:view>
+</html>
+

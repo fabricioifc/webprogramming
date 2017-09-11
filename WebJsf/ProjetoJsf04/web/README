@@ -1,0 +1,5 @@
+ProjetoJsf04
+
+- Criar uma lista de clientes para armazenar na sessão e mostrar na página de confirmação
+- Alterar o método salvarCliente para utilizar faces-redirect
+- Colocar um link para voltar para a página inicial

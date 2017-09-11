@@ -1,0 +1,5 @@
+br/com/ifc/enem/entidades/Usuarios_.class
+br/com/ifc/enem/bean/HomeBean.class
+br/com/ifc/enem/util/JpaUtil.class
+br/com/ifc/enem/bean/remote/HomeBeanRemote.class
+br/com/ifc/enem/entidades/Usuarios.class

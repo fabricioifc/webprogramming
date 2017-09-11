@@ -1,0 +1,2 @@
+- Colocar o datatable dentro de um h:form
+- Implementar a exclusão de cada cliente no datatable (método removerCliente e limpar)

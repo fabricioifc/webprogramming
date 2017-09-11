@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <title>Pizzarias | Pizzaria</title>
+            <h:outputStylesheet library="css" name="bootstrap.css" />
+        </h:head>
+        <h:body>
+            <div class="container">
+                <h:form class="form-horizontal" id="formulario">
+
+                    <div class="row">
+                        <h:messages id="avisos" showDetail="true" showSummary="false"/>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3>Cadastro de pizzarias</h3>
+                            </div>
+                            <div class="panel-body">
+
+                                <div class="form-group">
+                                    <h:outputLabel for="nome" class="control-label col-md-2" value="Nome: " />
+                                    <div class="col-md-10">
+                                        <h:inputText value="#{pizzariaMB.pizzaria.nome}" id="nome" label="Nome" 
+                                                     class="form-control" required="true" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <h:outputLabel for="preco_peq" class="control-label col-md-2" value="Preço (Pequena): " />
+                                    <div class="col-md-10">
+                                        <h:inputText value="#{pizzariaMB.pizzaria.precoPeq}" id="preco_peq" label="Pequena (R$)" 
+                                                       class="form-control" required="true">
+                                            <f:validateDoubleRange minimum="0.1" />
+                                        </h:inputText>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <h:outputLabel for="preco_med" class="control-label col-md-2" value="Preço (Médio): " />
+                                    <div class="col-md-10">
+                                        <h:inputText value="#{pizzariaMB.pizzaria.precoMed}" id="preco_med" label="Média (R$)" 
+                                                       class="form-control" required="true">
+                                            <f:validateDoubleRange minimum="0.1" />
+                                        </h:inputText>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <h:outputLabel for="preco_grd" class="control-label col-md-2" value="Preço (Grande): " />
+                                    <div class="col-md-10">
+                                        <h:inputText value="#{pizzariaMB.pizzaria.precoGrd}" id="preco_grd" label="Grande (R$)" 
+                                                       class="form-control" required="true" >
+                                            <f:validateDoubleRange minimum="0.1" />
+                                        </h:inputText>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <h:outputLabel for="preco_borda" class="control-label col-md-2" value="Preço (Borda): " />
+                                    <div class="col-md-10">
+                                        <h:inputText value="#{pizzariaMB.pizzaria.precoBorda}" 
+                                                       id="preco_borda" label="Borda (R$)" class="form-control" required="true">
+                                            <f:validateDoubleRange minimum="0.1" />
+                                        </h:inputText>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="panel-footer">
+                                <h:commandButton actionListener="#{pizzariaMB.salvar()}"
+                                                 value="Salvar" class="btn btn-success">
+                                    <f:ajax execute="@form :formularioLista" render="@form :formularioLista :avisos" /> 
+                                </h:commandButton>
+                            </div>
+                        </div>
+
+                    </div>
+                </h:form>
+                <h:form id="formularioLista">
+
+                    <div class="row">
+                        <p:dataTable var="obj" value="#{pizzariaMB.pizzarias}">
+                            <f:facet name="header">
+                                <h:outputText value="Lista de pizzarias" />
+                            </f:facet>
+                            <p:column headerText="#">
+                                <h:outputText value="#{obj.idpizzaria}" />
+                            </p:column>
+
+                            <p:column headerText="Nome">
+                                <h:outputText value="#{obj.nome}" />
+                            </p:column>
+
+                            <p:column headerText="Endereço">
+                                <h:outputText value="#{obj.precoPeq}" />
+                            </p:column>
+
+                            <p:column headerText="Telefone">
+                                <h:outputText value="#{obj.precoMed}" />
+                            </p:column>
+
+                            <p:column headerText="Telefone">
+                                <h:outputText value="#{obj.precoGrd}" />
+                            </p:column>
+
+                            <p:column headerText="Telefone">
+                                <h:outputText value="#{obj.precoBorda}" />
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Ações" />
+                                </f:facet>
+                                <h:commandButton value="Alterar" action="#{pizzariaMB.prepararAlterar()}">
+                                    <f:ajax execute=":formulario" render=":formulario" /> 
+                                    <f:setPropertyActionListener target="#{pizzariaMB.pizzaria}" value="#{obj}" />
+                                </h:commandButton>
+                                <h:commandButton value="Excluir" action="#{pizzariaMB.remover}" onclick="return confirm('Tem certeza?')">
+                                    <f:ajax execute="@this" render="@form" /> 
+                                    <f:setPropertyActionListener target="#{pizzariaMB.pizzaria}" value="#{obj}" />
+                                </h:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+                </h:form>
+            </div>
+        </h:body>
+    </f:view>
+</html>
+

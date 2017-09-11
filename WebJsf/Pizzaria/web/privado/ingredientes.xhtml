@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <title>Ingredientes | Pizzaria</title>
+            <h:outputStylesheet library="css" name="bootstrap.css" />
+        </h:head>
+        <h:body>
+            <div class="container">
+                <h:form class="form-horizontal" id="formulario">
+
+                    <div class="row">
+                        <h:messages id="avisos" showDetail="true" showSummary="false"/>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3>Cadastro de ingredientes</h3>
+                            </div>
+                            <div class="panel-body">
+
+                                <div class="form-group">
+                                    <h:outputLabel for="nome" class="control-label col-md-2" value="Nome: " />
+                                    <div class="col-md-10">
+                                        <h:inputText value="#{ingredienteMB.ingrediente.nome}" id="nome" label="Nome" 
+                                                     class="form-control" required="true" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <h:outputLabel for="idativo" class="control-label col-md-2" value="Ativo: " />
+                                    <div class="col-md-10">
+                                        <h:selectBooleanCheckbox value="#{ingredienteMB.ingrediente.idativo}" id="idativo" label="Ativo" 
+                                                                 class="form-control" required="true" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="panel-footer">
+                                <h:commandButton actionListener="#{ingredienteMB.salvar()}"
+                                                 value="Salvar" class="btn btn-success">
+                                    <f:ajax execute="@form :formularioLista" render="@form :formularioLista :avisos" /> 
+                                </h:commandButton>
+                            </div>
+                        </div>
+
+                    </div>
+                </h:form>
+                <h:form id="formularioLista">
+
+                    <div class="row">
+                        <p:dataTable var="obj" value="#{ingredienteMB.ingredientes}">
+                            <f:facet name="header">
+                                <h:outputText value="Lista de ingredientes" />
+                            </f:facet>
+                            <p:column headerText="#">
+                                <h:outputText value="#{obj.idingrediente}" />
+                            </p:column>
+
+                            <p:column headerText="Nome">
+                                <h:outputText value="#{obj.nome}" />
+                            </p:column>
+
+                            <p:column headerText="Ativo">
+                                <h:outputText value="#{obj.idativo}" />
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Ações" />
+                                </f:facet>
+                                <h:commandButton value="Alterar" action="#{ingredienteMB.prepararAlterar()}">
+                                    <f:ajax execute=":formulario" render=":formulario" /> 
+                                    <f:setPropertyActionListener target="#{ingredienteMB.ingrediente}" value="#{obj}" />
+                                </h:commandButton>
+                                <h:commandButton value="Excluir" action="#{ingredienteMB.remover}" onclick="return confirm('Tem certeza?')">
+                                    <f:ajax execute="@this" render="@form" /> 
+                                    <f:setPropertyActionListener target="#{ingredienteMB.ingrediente}" value="#{obj}" />
+                                </h:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+                </h:form>
+            </div>
+        </h:body>
+    </f:view>
+</html>
+

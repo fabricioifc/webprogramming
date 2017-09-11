@@ -1,0 +1,8 @@
+ProjetoJsf03
+
+- Criação do método toString na classe Cliente
+- Implementar serializable na classe clienteBean
+- Criação da ação do bean e tela para confirmação do cadastro
+
+Após testar, alterar o escopo para ViewScoped e RequestScoped. 
+Acessar a página de confirmação para mostrar que os dados não irão existir após a requisição.

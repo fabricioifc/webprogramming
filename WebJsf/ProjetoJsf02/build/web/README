@@ -1,0 +1,7 @@
+ProjetoJsf02
+
+- Tela index com o formulário para cadastrar os clientes.
+- Model do cliente
+- Controller clienteBean
+
+Ainda não foi criada ação para o botão. Sendo assim, o submit é feito dentro da própria página.

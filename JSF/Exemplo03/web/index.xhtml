@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:messages />
+        <h:form prependId="false">
+            <h:panelGrid columns="3">
+                <h:outputLabel for="cpf" value="CPF" />
+                <h:inputText id="cpf" value="#{clienteBean.cliente.cpf}" required="true" requiredMessage="Informe o cpf do cliente"
+                             validatorMessage="CPF inválido">
+                    <f:validateRegex pattern="(^\d{3}\d{3}\d{3}\d{2}$)"  />
+                </h:inputText>
+                <h:messages for="cpf" />
+
+                <h:outputLabel for="nome" value="Nome" />
+                <h:inputText id="nome" value="#{clienteBean.cliente.nome}" required="true" requiredMessage="Informe o nome do cliente" />
+                <h:messages for="nome" />
+
+                <h:outputLabel for="email" value="E-mail" />
+                <h:inputText id="email" value="#{clienteBean.cliente.email}" 
+                             required="true" requiredMessage="Informe o e-mail do cliente"
+                             validatorMessage="E-mail inválido">
+                    <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                </h:inputText>
+                <h:messages for="email" />
+
+                <h:outputLabel for="idade" value="Idade" />
+                <h:inputText id="idade" value="#{clienteBean.cliente.idade}" required="true" requiredMessage="Informe a idade do cliente" />
+                <h:messages for="idade" />
+
+                <h:outputLabel value="" />
+                <h:column>
+                    <h:commandButton value="Salvar" action="#{clienteBean.salvar()}" />
+                    <h:commandButton value="Limpar" action="#{clienteBean.limpar()}" immediate="true" />
+                </h:column>
+                <h:outputLabel value="" />
+
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+

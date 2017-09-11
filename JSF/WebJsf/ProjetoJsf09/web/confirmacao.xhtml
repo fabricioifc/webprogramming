@@ -15,6 +15,12 @@
                 <f:facet name="header">
                     <h:outputText value="Lista de Clientes" />
                 </f:facet>
+                 <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nome" />
+                    </f:facet>
+                    <h:outputText value="#{c.cpf}" />
+                </h:column>
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Nome" />
@@ -37,7 +43,7 @@
                     <f:facet name="header">
                         <h:outputText value="Ações" />
                     </f:facet>
-                    <h:commandButton action="#{clienteBean.removerCliente()}" value="Excluir" onclick="return confirm('Tem certeza?')">
+                    <h:commandButton action="#{clienteBean.remover()}" value="Excluir" onclick="return confirm('Tem certeza?')">
                         <f:setPropertyActionListener target="#{clienteBean.cliente}" value="#{c}" />
                     </h:commandButton>
                 </h:column>
@@ -45,7 +51,7 @@
                     <f:facet name="header">
                         <h:outputText value="Ações" />
                     </f:facet>
-                    <h:commandButton action="#{clienteBean.editarCliente()}" value="Editar">
+                    <h:commandButton action="#{clienteBean.editar()}" value="Editar">
                         <f:setPropertyActionListener target="#{clienteBean.cliente}" value="#{c}" />
                     </h:commandButton>
                 </h:column>
@@ -53,7 +59,7 @@
 
         </h:form>
         <hr />
-        <h:link outcome="index.xhtml" value="Página inicial" />
+        <h:link outcome="index.xhtml" value="Cadastrar cliente" />
     </h:body>
 </html>
 

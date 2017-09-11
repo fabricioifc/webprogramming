@@ -37,22 +37,21 @@ public class ClienteBean implements Serializable {
      *
      * @return
      */
-    public String salvarCliente() {
-        System.out.println(cliente);
+    public String salvar() {
         clientes.add(cliente);
         limpar();
         MensagemUtils.adicionarMensagemDeSucesso("Cliente salvo com sucesso!");
         return "confirmacao?faces-redirect=true";
     }
 
-    public String removerCliente() {
+    public String remover() {
         clientes.remove(cliente);
         limpar();
         MensagemUtils.adicionarMensagemDeSucesso("Cliente removido com sucesso!");
         return "confirmacao?faces-redirect=true";
     }
 
-    public String editarCliente() {
+    public String editar() {
         clientes.remove(cliente);
         return "index?faces-redirect=true";
     }

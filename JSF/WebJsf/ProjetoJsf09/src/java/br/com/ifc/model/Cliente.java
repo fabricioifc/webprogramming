@@ -11,6 +11,7 @@ package br.com.ifc.model;
  */
 public class Cliente {
 
+    private String cpf;
     private String nome;
     private String email;
     private Integer idade;
@@ -18,10 +19,12 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(String nome, String email, Integer idade) {
-        this.nome = nome;
-        this.email = email;
-        this.idade = idade;
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getNome() {

@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "htth://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <f:view locale="#{idiomaBean.locale}">
+        <h:head>
+            <title>Pizzarias | Pizzaria</title>
+        </h:head>
+        <h:body>
+            <ui:composition template="/template/layout.xhtml">
+
+                <ui:define name="content">
+                    <h:form class="form-horizontal" id="formulario">
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3>#{msg.pizza}</h3>
+                            </div>
+                            <div class="panel-body">
+
+                                <div class="form-group">
+                                    <h:outputLabel for="nome" class="control-label col-md-2" value="#{msg.pizzaria_nome}" />
+                                    <div class="col-md-10">
+                                        <h:inputText value="#{pizzaBean.pizza.nome}" id="nome" label="#{msg.pizzaria_nome}" 
+                                                     class="form-control" required="true" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <h:outputLabel for="Pizzaria_id" class="control-label col-md-2" value="#{msg.pizzaria}" />
+                                    <div class="col-md-10">
+                                        <h:selectOneMenu id="Pizzaria_id" value="#{pizzaBean.pizza.pizzaria.id}" class="form-control" required="true">
+                                            <f:selectItem itemLabel="Selecione a Pizzaria" itemValue="" />
+                                            <f:selectItems value="#{pizzaBean.pizzarias}" var="p" itemValue="#{p}" itemLabel="#{p.nome}" />
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <h:outputLabel for="ingredientes" class="control-label col-md-2" value="#{msg.pizza_ingredientes}" />
+                                    <div class="col-md-10">
+                                        <h:selectManyListbox id="ingredientes" value="#{pizzaBean.pizza.ingredientes}">
+                                            <f:selectItem itemLabel="Selecione os Ingredientes" itemValue="" />
+                                            <f:selectItems value="#{pizzaBean.ingredientes}" var="p" itemValue="#{p}" itemLabel="#{p.descricao}" />
+                                        </h:selectManyListbox>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="panel-footer">
+                                <div class="btn-group">
+                                    <h:commandButton actionListener="#{pizzaBean.salvar()}"
+                                                     value="#{pizzaBean.pizza.id == null ? msg.salvar : msg.atualizar} " 
+                                                     class="#{pizzaBean.pizza.id == null ? 'btn btn-primary' : 'btn btn-warning'}">
+                                        <f:ajax execute="@form :formularioLista" render="@form :formularioLista :avisos" /> 
+                                    </h:commandButton>
+                                    <h:commandButton actionListener="#{pizzaBean.limparCampos()}" immediate="true"
+                                                     value="#{msg.cancelar}" class="btn btn-default"
+                                                     rendered="#{pizzaBean.pizza.id != null}">
+                                        <f:ajax execute="@this" render="@form :formularioLista :avisos" /> 
+                                    </h:commandButton>
+                                </div>
+                            </div>
+                        </div>
+
+                    </h:form>
+
+                    <h:form id="formularioLista">
+
+                        <h:dataTable var="obj" value="#{pizzaBean.pizzas}"
+                                     class="table table-bordered table-condensed table-striped">
+                            <f:facet name="header">
+                                <h:outputText value="Lista de pizzarias" />
+                            </f:facet>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="ID" />
+                                </f:facet>
+                                <h:outputText value="#{obj.id}" />
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nome" />
+                                </f:facet>
+                                <h:outputText value="#{obj.nome}" />
+                            </h:column>
+                            
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{msg.pizzaria}" />
+                                </f:facet>
+                                <h:outputText value="#{obj.pizzaria.nome}" />
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Qtd. Ingredientes" />
+                                </f:facet>
+                                <h:outputText value="#{obj.ingredientes.size}" />
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Ações" />
+                                </f:facet>
+                                <div class="btn-group">
+                                    <h:commandButton value="Alterar" action="#{pizzaBean.prepararAlterar()}" class="btn btn-xs btn-warning">
+                                        <f:ajax execute=":formulario" render=":formulario :avisos" /> 
+                                        <f:setPropertyActionListener target="#{pizzaBean.pizza}" value="#{obj}" />
+                                    </h:commandButton>
+                                    <h:commandButton value="Excluir" action="#{pizzaBean.remover}" 
+                                                     class="btn btn-xs btn-danger"
+                                                     onclick="return confirm('Tem certeza?')">
+                                        <f:ajax execute="@this" render="@form :avisos" /> 
+                                        <f:setPropertyActionListener target="#{pizzaBean.pizza}" value="#{obj}" />
+                                    </h:commandButton>
+                                </div>
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
+
+                </ui:define>
+            </ui:composition>
+        </h:body>
+    </f:view>
+</html>
+

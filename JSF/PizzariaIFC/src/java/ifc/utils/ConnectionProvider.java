@@ -39,7 +39,7 @@ public class ConnectionProvider {
     public Connection getConnection() throws Exception {
 
         try {
-            this.closeConnection();
+//            this.closeConnection();
             connection = DriverManager.getConnection(this.url, "root", "root");
             connection.setAutoCommit(false);
         } catch (Exception exception) {

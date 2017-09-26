@@ -26,8 +26,9 @@
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                 <ul class="nav navbar-nav">
-                                    <li><h:link outcome="/privado/pizzarias" value="Lista de Pizzarias" /></li>
-                                    <li><h:link outcome="/privado/ingredientes" value="Lista de Ingredientes" /></li>
+                                        <li><h:link outcome="/privado/pizzarias" value="Lista de Pizzarias" /></li>
+                                        <li><h:link outcome="/privado/ingredientes" value="Lista de Ingredientes" /></li>
+                                    <li><h:link outcome="/privado/pizzas" value="Lista de Pizzas" /></li>
                                 </ul>
                                 <ul class="nav navbar-nav navbar-right">
                                     <li class="#{idiomaBean.linguagem == 'pt-br' ? 'active' : ''}">
@@ -38,6 +39,11 @@
                                     <li class="#{idiomaBean.linguagem == 'en' ? 'active' : ''}">
                                         <h:commandLink value="Inglês">
                                             <f:setPropertyActionListener value="en" target="#{idiomaBean.linguagem}" />
+                                        </h:commandLink>
+                                    </li>
+                                    <li class="#{idiomaBean.linguagem == 'ru' ? 'active' : ''}">
+                                        <h:commandLink value="Russo">
+                                            <f:setPropertyActionListener value="ru" target="#{idiomaBean.linguagem}" />
                                         </h:commandLink>
                                     </li>
                                 </ul>

@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "htth://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <f:view locale="#{idiomaBean.locale}">
+        <h:head>
+            <title>Pizzarias | Pizzaria</title>
+        </h:head>
+        <h:body>
+            <ui:composition template="/template/layout.xhtml">
+
+                <ui:define name="content">
+                    <h:form class="form-horizontal" id="formulario">
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3>#{msg.ingrediente}</h3>
+                            </div>
+                            <div class="panel-body">
+
+                                <div class="form-group">
+                                    <h:outputLabel for="descricao" class="control-label col-md-2" value="#{msg.ingrediente_descricao}" />
+                                    <div class="col-md-10">
+                                        <h:inputText value="#{ingredienteBean.ingrediente.descricao}" id="descricao" label="#{msg.ingrediente_descricao}" 
+                                                     class="form-control" required="true" />
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="panel-footer">
+                                <div class="btn-group">
+                                    <h:commandButton actionListener="#{ingredienteBean.salvar()}"
+                                                     value="#{ingredienteBean.ingrediente.id == null ? msg.salvar : msg.atualizar} " 
+                                                     class="#{ingredienteBean.ingrediente.id == null ? 'btn btn-primary' : 'btn btn-warning'}">
+                                        <f:ajax execute="@form :formularioLista" render="@form :formularioLista :avisos" /> 
+                                    </h:commandButton>
+                                    <h:commandButton actionListener="#{ingredienteBean.limparCampos()}" immediate="true"
+                                                     value="#{msg.cancelar}" class="btn btn-default"
+                                                     rendered="#{ingredienteBean.ingrediente.id != null}">
+                                        <f:ajax execute="@this" render="@form :formularioLista :avisos" /> 
+                                    </h:commandButton>
+                                </div>
+                            </div>
+                        </div>
+
+                    </h:form>
+
+                    <h:form id="formularioLista">
+
+                        <h:dataTable var="obj" value="#{ingredienteBean.ingredientes}"
+                                     class="table table-bordered table-condensed table-striped">
+                            <f:facet name="header">
+                                <h:outputText value="Lista de pizzarias" />
+                            </f:facet>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="ID" />
+                                </f:facet>
+                                <h:outputText value="#{obj.id}" />
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Descrição" />
+                                </f:facet>
+                                <h:outputText value="#{obj.descricao}" />
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Ações" />
+                                </f:facet>
+                                <div class="btn-group">
+                                    <h:commandButton value="Alterar" action="#{ingredienteBean.prepararAlterar()}" class="btn btn-xs btn-warning">
+                                        <f:ajax execute=":formulario" render=":formulario :avisos" /> 
+                                        <f:setPropertyActionListener target="#{ingredienteBean.ingrediente}" value="#{obj}" />
+                                    </h:commandButton>
+                                    <h:commandButton value="Excluir" action="#{ingredienteBean.remover}" 
+                                                     class="btn btn-xs btn-danger"
+                                                     onclick="return confirm('Tem certeza?')">
+                                        <f:ajax execute="@this" render="@form :avisos" /> 
+                                        <f:setPropertyActionListener target="#{ingredienteBean.ingrediente}" value="#{obj}" />
+                                    </h:commandButton>
+                                </div>
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
+
+                </ui:define>
+            </ui:composition>
+        </h:body>
+    </f:view>
+</html>
+

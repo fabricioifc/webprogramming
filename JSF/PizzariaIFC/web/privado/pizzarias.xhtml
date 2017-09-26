@@ -7,7 +7,6 @@
     <f:view locale="#{idiomaBean.locale}">
         <h:head>
             <title>Pizzarias | Pizzaria</title>
-            <h:outputStylesheet library="css" name="bootstrap.css" />
         </h:head>
         <h:body>
             <ui:composition template="/template/layout.xhtml">
@@ -30,7 +29,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <h:outputLabel for="preco_peq" class="control-label col-md-2" value="Preço (Pequena): " />
+                                    <h:outputLabel for="preco_peq" class="control-label col-md-2" value="#{msg.pizzaria_preco_peq}" />
                                     <div class="col-md-10">
                                         <h:inputText value="#{pizzariaBean.pizzaria.precoPeq}" id="preco_peq" label="Pequena (R$)" 
                                                      class="form-control" required="true">

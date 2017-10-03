@@ -47,7 +47,7 @@ public class PizzariaConverter implements Converter {
 
         Pizzaria pizzaria = (Pizzaria) value;
 
-        return pizzaria.getNome();
+        return pizzaria.getId() + "";
     }
 
 }

@@ -24,13 +24,14 @@ public class ConnectionProvider {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(this.url, "root", "root");
+            connection.setAutoCommit(false);
         } catch (Exception classNotFoundException) {
             throw new Exception(classNotFoundException);
         }
     }
 
     public static ConnectionProvider getInstance() throws Exception {
-        if (instance == null) {
+        if (instance == null || connection == null  || connection.isClosed()) {
             instance = new ConnectionProvider();
         }
         return instance;
@@ -40,8 +41,8 @@ public class ConnectionProvider {
 
         try {
 //            this.closeConnection();
-            connection = DriverManager.getConnection(this.url, "root", "root");
-            connection.setAutoCommit(false);
+//            connection = DriverManager.getConnection(this.url, "root", "root");
+//            connection.setAutoCommit(false);
         } catch (Exception exception) {
             throw new Exception(exception);
         }

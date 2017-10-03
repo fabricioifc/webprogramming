@@ -6,10 +6,12 @@
 package ifc.dao;
 
 import ifc.model.Ingrediente;
+import ifc.model.PizzaIngrediente;
 import ifc.model.Pizzaria;
 import ifc.utils.ConnectionProvider;
 import ifc.utils.Transacao;
 import ifc.utils.TransacaoJdbcImpl;
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,7 +23,7 @@ import java.util.List;
  *
  * @author fabricio
  */
-public class IngredienteDaoImpl implements IngredienteDao {
+public class IngredienteDaoImpl implements IngredienteDao, Serializable {
 
     @Override
     public void inserir(Ingrediente objeto) throws Exception {

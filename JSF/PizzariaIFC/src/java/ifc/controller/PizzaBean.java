@@ -18,8 +18,6 @@ import ifc.utils.MensagemUtils;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -36,6 +34,7 @@ public class PizzaBean implements Serializable {
     private Pizza pizza;
     private List<Pizza> pizzas;
     private List<Pizzaria> pizzarias;
+//    private Map<Ingrediente, Boolean> checked;
 
     private final PizzariaDao pizzariaDao;
     private final IngredienteDao ingredienteDao;
@@ -136,6 +135,8 @@ public class PizzaBean implements Serializable {
         try {
             pizza = new Pizza();
             pizza.setPizzaria(new Pizzaria());
+            pizza.setIngredientes(new ArrayList<>());
+//            checked = new HashMap<>();
         } catch (Exception ex) {
             MensagemUtils.adicionarMensagemDeErroPadrao(ex);
             throw ex;
@@ -190,4 +191,11 @@ public class PizzaBean implements Serializable {
         this.pizzarias = pizzarias;
     }
 
+//    public Map<Ingrediente, Boolean> getChecked() {
+//        return checked;
+//    }
+//
+//    public void setChecked(Map<Ingrediente, Boolean> checked) {
+//        this.checked = checked;
+//    }
 }

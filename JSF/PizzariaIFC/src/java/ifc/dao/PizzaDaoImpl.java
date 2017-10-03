@@ -22,29 +22,36 @@ import java.util.List;
  */
 public class PizzaDaoImpl implements PizzaDao {
 
-    private PizzariaDao pizzariaDao;
+    private final PizzariaDao pizzariaDao;
+    private final PizzaIngredienteDao pizzaIngredienteDao;
 
     public PizzaDaoImpl() {
         pizzariaDao = new PizzariaDaoImpl();
+        pizzaIngredienteDao = new PizzaIngredienteDaoImpl();
     }
 
     @Override
     public void inserir(Pizza objeto) throws Exception {
         Transacao tx = TransacaoJdbcImpl.getInstance();
         Connection conn = tx.getConnection();
+        String generatedColumns[] = {"id"};
+        Integer idPizza = null;
 
         try {
             tx.begin();
 
             String query = "insert into Pizza (nome, Pizzaria_id) values (?, ?)";
-            PreparedStatement statement = TransacaoJdbcImpl.getInstance().getConnection().prepareStatement(query);
+            PreparedStatement statement = TransacaoJdbcImpl.getInstance().getConnection().prepareStatement(query, generatedColumns);
             statement.setString(1, objeto.getNome());
             statement.setInt(2, objeto.getPizzaria().getId());
 
             statement.executeUpdate();
-
+            ResultSet rs = statement.getGeneratedKeys();
+            if (rs.next()) {
+                idPizza = rs.getInt(1);
+                pizzaIngredienteDao.inserirIngredientePizza(idPizza, objeto.getIngredientes());
+            }
             tx.commit();
-
         } catch (SQLException sqlException) {
             throw new Exception(sqlException);
         } finally {
@@ -58,8 +65,11 @@ public class PizzaDaoImpl implements PizzaDao {
 
     @Override
     public void remover(Integer objeto) throws Exception {
+
         Transacao tx = TransacaoJdbcImpl.getInstance();
         Connection conn = tx.getConnection();
+
+        pizzaIngredienteDao.removerIngredientesPizza(objeto);
 
         try {
             tx.begin();
@@ -100,8 +110,8 @@ public class PizzaDaoImpl implements PizzaDao {
             statement.setLong(3, objeto.getId());
             statement.executeUpdate();
 
+            pizzaIngredienteDao.inserirIngredientePizza(objeto.getId(), objeto.getIngredientes());
             tx.commit();
-
         } catch (SQLException sqlException) {
             throw new Exception(sqlException);
         } finally {
@@ -115,7 +125,7 @@ public class PizzaDaoImpl implements PizzaDao {
 
     @Override
     public Pizza buscarPorId(Integer id) throws Exception {
-        Pizza pizza = new Pizza();
+        Pizza pizza = null;
         try {
             String query = "select * from Pizza where id = ?";
             PreparedStatement statement = ConnectionProvider.getInstance().getConnection().prepareStatement(query);
@@ -127,6 +137,7 @@ public class PizzaDaoImpl implements PizzaDao {
                 pizza.setId(resultSet.getInt("id"));
                 pizza.setNome(resultSet.getString("nome"));
                 pizza.setPizzaria(pizzariaDao.buscarPorId(resultSet.getInt("Pizzaria_id")));
+                pizza.setIngredientes(pizzaIngredienteDao.getIngredientesPizza(id));
             }
         } catch (SQLException sqlException) {
             throw new Exception(sqlException);
@@ -148,6 +159,7 @@ public class PizzaDaoImpl implements PizzaDao {
                 pizza.setId(rs.getInt("id"));
                 pizza.setNome(rs.getString("nome"));
                 pizza.setPizzaria(pizzariaDao.buscarPorId(rs.getInt("Pizzaria_id")));
+                pizza.setIngredientes(pizzaIngredienteDao.getIngredientesPizza(rs.getInt("id")));
                 lista.add(pizza);
             }
         } catch (SQLException sqlException) {
@@ -155,4 +167,5 @@ public class PizzaDaoImpl implements PizzaDao {
         }
         return lista;
     }
+
 }

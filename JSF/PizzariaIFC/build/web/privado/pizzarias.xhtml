@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "htth://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <f:view locale="#{idiomaBean.locale}">
+        <h:head>
+            <title>Pizzarias | Pizzaria</title>
+        </h:head>
+        <h:body>
+            <ui:composition template="/template/layout.xhtml">
+
+                <ui:define name="content">
+                    <h:form class="form-horizontal" id="formulario">
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3>#{msg.pizzaria}</h3>
+                            </div>
+                            <div class="panel-body">
+
+                                <div class="form-group">
+                                    <h:outputLabel for="nome" class="control-label col-md-2" value="#{msg.pizzaria_nome}" />
+                                    <div class="col-md-10">
+                                        <h:inputText value="#{pizzariaBean.pizzaria.nome}" id="nome" label="#{msg.pizzaria_nome}" 
+                                                     class="form-control" required="true" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <h:outputLabel for="preco_peq" class="control-label col-md-2" value="#{msg.pizzaria_preco_peq}" />
+                                    <div class="col-md-10">
+                                        <h:inputText value="#{pizzariaBean.pizzaria.precoPeq}" id="preco_peq" label="Pequena (R$)" 
+                                                     class="form-control" required="true">
+                                            <f:validateDoubleRange minimum="0.1" />
+                                        </h:inputText>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <h:outputLabel for="preco_med" class="control-label col-md-2" value="Preço (Médio): " />
+                                    <div class="col-md-10">
+                                        <h:inputText value="#{pizzariaBean.pizzaria.precoMed}" id="preco_med" label="Média (R$)" 
+                                                     class="form-control" required="true">
+                                            <f:validateDoubleRange minimum="0.1" />
+                                        </h:inputText>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <h:outputLabel for="preco_grd" class="control-label col-md-2" value="Preço (Grande): " />
+                                    <div class="col-md-10">
+                                        <h:inputText value="#{pizzariaBean.pizzaria.precoGrd}" id="preco_grd" label="Grande (R$)" 
+                                                     class="form-control" required="true" >
+                                            <f:validateDoubleRange minimum="0.1" />
+                                        </h:inputText>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <h:outputLabel for="preco_borda" class="control-label col-md-2" value="Preço (Borda): " />
+                                    <div class="col-md-10">
+                                        <h:inputText value="#{pizzariaBean.pizzaria.precoBorda}" 
+                                                     id="preco_borda" label="Borda (R$)" class="form-control" required="true">
+                                            <f:validateDoubleRange minimum="0.1" />
+                                        </h:inputText>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="panel-footer">
+                                <div class="btn-group">
+                                    <h:commandButton actionListener="#{pizzariaBean.salvar()}"
+                                                     value="#{pizzariaBean.pizzaria.id == null ? msg.salvar : msg.atualizar} " 
+                                                     class="#{pizzariaBean.pizzaria.id == null ? 'btn btn-primary' : 'btn btn-warning'}">
+                                        <f:ajax execute="@form :formularioLista" render="@form :formularioLista :avisos" /> 
+                                    </h:commandButton>
+                                    <h:commandButton actionListener="#{pizzariaBean.limparCampos()}" immediate="true"
+                                                     value="#{msg.cancelar}" class="btn btn-default"
+                                                     rendered="#{pizzariaBean.pizzaria.id != null}">
+                                        <f:ajax execute="@this" render="@form :formularioLista :avisos" /> 
+                                    </h:commandButton>
+                                </div>
+                            </div>
+                        </div>
+
+                    </h:form>
+
+                    <h:form id="formularioLista">
+
+                        <h:dataTable var="obj" value="#{pizzariaBean.pizzarias}"
+                                     class="table table-bordered table-condensed table-striped">
+                            <f:facet name="header">
+                                <h:outputText value="Lista de pizzarias" />
+                            </f:facet>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="ID" />
+                                </f:facet>
+                                <h:outputText value="#{obj.id}" />
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nome" />
+                                </f:facet>
+                                <h:outputText value="#{obj.nome}" />
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Preço (Pequena)" />
+                                </f:facet>
+                                <h:outputText value="#{obj.precoPeq}" />
+                            </h:column>
+
+                            <h:column >
+                                <f:facet name="header">
+                                    <h:outputText value="Preço (Média)" />
+                                </f:facet>
+                                <h:outputText value="#{obj.precoMed}" />
+                            </h:column>
+
+                            <h:column >
+                                <f:facet name="header">
+                                    <h:outputText value="Preço (Grande)" />
+                                </f:facet>
+                                <h:outputText value="#{obj.precoGrd}" />
+                            </h:column>
+
+                            <h:column >
+                                <f:facet name="header">
+                                    <h:outputText value="Preço (Borda)" />
+                                </f:facet>
+                                <h:outputText value="#{obj.precoBorda}" />
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Ações" />
+                                </f:facet>
+                                <div class="btn-group">
+                                    <h:commandButton value="Alterar" action="#{pizzariaBean.prepararAlterar()}" class="btn btn-xs btn-warning">
+                                        <f:ajax execute=":formulario" render=":formulario :avisos" /> 
+                                        <f:setPropertyActionListener target="#{pizzariaBean.pizzaria}" value="#{obj}" />
+                                    </h:commandButton>
+                                    <h:commandButton value="Excluir" action="#{pizzariaBean.remover}" 
+                                                     class="btn btn-xs btn-danger"
+                                                     onclick="return confirm('Tem certeza?')">
+                                        <f:ajax execute="@this" render="@form :avisos" /> 
+                                        <f:setPropertyActionListener target="#{pizzariaBean.pizzaria}" value="#{obj}" />
+                                    </h:commandButton>
+                                </div>
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
+
+                </ui:define>
+            </ui:composition>
+        </h:body>
+    </f:view>
+</html>
+

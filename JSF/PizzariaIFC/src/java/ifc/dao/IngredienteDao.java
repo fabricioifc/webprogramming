@@ -6,7 +6,8 @@
 package ifc.dao;
 
 import ifc.model.Ingrediente;
-import ifc.model.Pizzaria;
+import ifc.model.PizzaIngrediente;
+import java.util.List;
 
 
 /**
